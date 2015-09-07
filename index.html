@@ -1,0 +1,202 @@
+<html class="js svg wf-opensans-i3-active wf-opensans-i4-active wf-opensans-n4-active wf-opensans-n3-active wf-opensans-n6-active wf-opensans-n7-active wf-active" lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>gob.mx - Trámites</title>
+	<meta name="description" content>
+	<meta name="viewport" content="width=device-width">	
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
+
+	<link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">
+	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/plugins.js"></script>
+	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/main.js"></script>
+	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/vendor/modernizr.js"></script>
+	<script src="js/tramite.js"></script>
+</head>
+<body>
+	<main role="main">
+		<div class="container">
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="icon icon-home"></i></a></li>
+				<li><a href="#">Trámites</a></li>
+			</ol>
+			<div class="row tramite-content" style="min-height: 400px;">
+				<div class="col-md-12">
+					<h2>Acta de nacimiento</h2>
+					<hr class="red" />
+					<!-- section>
+						<ul class="wizard-steps">
+							<li class="completed">
+								<h5>Paso 1</h5>
+								<span>Buscar</span>
+							</li>
+							<li>
+								<h5>Paso 2</h5>
+								<span>Seleccionar folio</span>
+							</li>
+						</ul>
+					</section -->
+				</div>
+				<section class="search">
+					<div class="col-md-5">
+						<h3>Consulta</h3>
+						<ul class="nav nav-tabs">
+						  <li class="active"><a data-toggle="tab" href="#tab-01">CURP</a></li>
+						  <li><a data-toggle="tab" href="#tab-02">Datos personales</a></li>
+						  <li><a data-toggle="tab" href="#tab-03">RFC</a></li>
+						  <li><a data-toggle="tab" href="#tab-04">Folio</a></li>
+						</ul>
+						<div class="tab-content">
+						  <div class="tab-pane active clearfix" id="tab-01">
+							<div class="form-group">
+								<label for="rfc">CURP</label>
+								<input name="CURP" id="CURP" class="form-control" />
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-default pull-right search-btn"><i class="icon icon-search"></i> Buscar</button>
+							</div>
+						  </div>
+						  <div class="tab-pane clearfix" id="tab-02">
+						  	<div class="form-group">
+								<label for="nombre">Nombre</label>
+								<input name="nombre" id="nombre" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="apellido-p">Primer Apellido</label>
+								<input name="apellido-p" id="apellido-p" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="apellido-s">Segundo Apellido</label>
+								<input name="apellido-s" id="apellido-s" class="form-control" />
+							</div>
+							<div class="form-group">								
+								<button type="button" class="btn btn-default pull-right search-btn"><i class="icon icon-search"></i> Buscar</button>
+							</div>
+						  </div>
+						  <div class="tab-pane clearfix" id="tab-03">
+						  	<div class="form-group">
+								<label for="rfc">RFC</label>
+								<input name="rfc" id="rfc" class="form-control" />
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-default pull-right search-btn"><i class="icon icon-search"></i> Buscar</button>
+							</div>
+						  </div>
+						  <div class="tab-pane clearfix" id="tab-04">
+						  	<div class="form-group">
+								<label for="folio">Folio</label>
+								<input name="folio" id="folio" class="form-control" />
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-default pull-right search-btn"><i class="icon icon-search"></i> Buscar</button>
+							</div>
+						  </div>
+						</div>
+						<br/>
+						<div class="form-group">
+							<a href="#" class="btn-link">Continuar trámite</a>
+						</div>
+					</div>
+					<div id="folios" class="col-md-7 hidden">
+						<div class="loader" style="text-align: center; margin-top: 20%;">
+							<img src="images/oval.svg" width="50" alt="" />
+						</div>
+						<div class="folios-holder"></div>
+						<br/>
+						<button type="button" class="btn btn-success next_step hidden">Siguiente</button>
+					</div>
+				</section>
+				<section class="preview hidden">
+					<div class="col-md-4">
+						<h5>¿Todos los datos son correctos?</h5>
+						<button type="button" class="btn btn-success next_step">Siguiente</button>
+						<button type="button" class="btn btn-danger">Datos no coinciden</button>
+					</div>
+					<div class="col-md-8 acta">
+					</div>
+				</section>
+				<section class="mistake hidden">
+
+				</section>
+				<section class="checkout hidden">
+					<div class="tipo-pago col-md-4 col-md-offset-4">
+						<div class="radio">
+						  <label class="col-md-12 clearfix">
+						    <input type="radio" name="radio-01" value="opcion-01" checked="checked"> Tarjeta de crédito
+						  </label>
+						  <br/>
+						  <label class="col-md-12 clearfix">
+						    <input type="radio" name="radio-01" value="opcion-02"> Pago en banco
+						  </label>
+						  <!-- label>
+						    <input type="radio" name="radio-01" value="opcion-03"> Paypal
+						  </label -->
+						</div>
+						<br/>
+						<button type="button" class="btn btn-success select-payment" style="margin-top: 24px;">Siguiente</button>
+					</div>
+					<div class="pago-tarjeta col-md-4 col-md-offset-4 hidden">
+						<div class="form-group">
+							<label for="nombre-tarjeta">Nombre en la tarjeta</label>
+							<input type="text" name="nombre-tarjeta" id="nombre-tarjeta" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="nombre-tarjeta">Número en la tarjeta</label>
+							<input type="text" name="nombre-tarjeta" id="nombre-tarjeta" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="ccv">CCV</label>
+							<input type="text" name="ccv" id="ccv" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="fecha">Fecha de vencimiento</label>
+							<input type="text" name="fecha" id="fecha" class="form-control" />
+						</div>
+						<div class="form-group">
+							<button type="button" class="btn btn-success next_step pull-right">Proceder a pagar</button>
+						</div>
+					</div>
+					<div class="pago-banco col-md-4 col-md-offset-4 hidden">
+						<h4 class="linea-captura"><strong>7fds7fd7afa8seas%Adar112445</strong></h4>
+					</div>
+					<!-- div class="pago-paypal"></div -->
+				</section>
+				<section class="confirmation hidden">
+					<div class="col-md-4 col-md-offset-4">
+						<div class="loader" style="text-align: center; margin-top: 20%;">
+							<img src="images/oval.svg" width="50" alt="">
+						</div>
+						<div class="exito hidden">
+							<h1>Pago realizado exitosamente</h1>
+							<p></p>
+							<a href="#">Descargar acta</a>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</main>
+	<script src="https://framework-gb-ssl.cdn.gob.mx/qa/gobmx.js"></script>
+	<script>
+		$(document).ready(function($) {
+			$('.search-btn').on('click', function() {
+				tramite.search();
+			});
+			$('.select-payment').on('click', function() {
+				$('.tipo-pago').addClass('hidden');
+				console.log(' radio? ' + $("input[name=radio-01]:checked").val() );
+				if( $("input[name=radio-01]:checked").val() == 'opcion-01') {
+					$('.pago-tarjeta').removeClass('hidden');
+				} else if ( $("input[name=radio-01]:checked").val() == 'opcion-02') {
+					$('.pago-banco').removeClass('hidden');
+				} 
+				/*else if ( $("input[name=radio-01]:checked").val() == 'opcion-03') {
+					$('.pago-paypal').removeClass('hidden');
+				}*/				
+			});
+			$('.next_step').on('click', function() { tramite.next_step(); });
+		});
+	</script>
+</body>
+</html>
