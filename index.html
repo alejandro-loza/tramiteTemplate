@@ -8,10 +8,9 @@
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
 
 	<link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">
-	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/plugins.js"></script>
-	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/main.js"></script>
-	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/vendor/modernizr.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>	
 	<script src="js/tramite.js"></script>
 </head>
 <body>
@@ -20,6 +19,7 @@
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="icon icon-home"></i></a></li>
 				<li><a href="#">Trámites</a></li>
+				<li><a href="#">Acta de nacimiento</a></li>
 			</ol>
 			<div class="row tramite-content" style="min-height: 400px;">
 				<div class="col-md-12">
@@ -177,9 +177,9 @@
 			</div>
 		</div>
 	</main>
-	<script src="https://framework-gb-ssl.cdn.gob.mx/qa/gobmx.js"></script>
+	<script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
 	<script>
-		$(document).ready(function($) {
+		$(function() {
 			$('.search-btn').on('click', function() {
 				tramite.search();
 			});
