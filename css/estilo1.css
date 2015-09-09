@@ -1,0 +1,12 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+
+table { font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;    margin: 45px;     width: 600x; text-align: left;}
+
+th {     font-size: 15px;     font-weight: normal;     padding: 80px;     background: #424242;
+    border-top: 4px solid #424242;    border-bottom: 1px solid #424242; color: #FFF; }
+
+td {    padding: 80px;     background: #BDBDBD;     border-bottom: 1px solid #BDBDBD;
+    color: #000000;    border-top: 1px solid transparent; }
+
+tr:hover td { background: #6E6E6E; color: #000000; }
