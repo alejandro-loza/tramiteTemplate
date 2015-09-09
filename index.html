@@ -6,13 +6,12 @@
 	<meta name="description" content>
 	<meta name="viewport" content="width=device-width">	
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
-
-	<link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">
-
-	
+	<link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>	
 	<script src="js/tramite.js"></script>
+
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	<main role="main">
@@ -71,6 +70,72 @@
 								<label for="apellido-s">Segundo Apellido</label>
 								<input name="apellido-s" id="apellido-s" class="form-control" />
 							</div>
+
+							<div class="form-group datepicker-group">
+							    <label class="control-label" for="calendarYear">Calendario:</label>
+							    <input class="form-control" id="calendarYear" type="text">
+							    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+							</div>
+
+						    <div class="form-group">
+								<label for="sexo">Sexo</label>
+								<div>
+									<select class="element select medium" id="sexo" name="sexo"> 
+										<option value="" selected="selected"></option>
+										<option value="Aguascalientes">Femenino</option>
+										<option value="Aguascalientes">Masculino</option>
+
+									</select>
+								</div>
+							</div>
+
+							<script type="text/javascript">
+								$gmx(document).ready(function() {
+								  $('#calendarYear').datepicker({changeYear: true});
+								});
+							</script>				
+
+							<div class="form-group">
+								<label for="entidad-federativa">Entidad Federativa</label>
+								<div>
+									<select class="element select medium" id="element_7" name="select_ef"> 
+										<option value="" selected="selected"></option>
+										<option value="Aguascalientes">Aguascalientes</option>
+										<option value="Baja California">Baja California</option>
+										<option value="Baja California Sur">Baja California Sur</option>
+										<option value="Campeche">Campeche</option>
+										<option value="Chiapas">Chiapas</option>
+										<option value="Chihuahua">Chihuahua</option>
+										<option value="Coahuila">Coahuila</option>
+										<option value="Colima">Colima</option>
+										<option value="Distrito Federal">Distrito Federal</option>
+										<option value="Durango">Durango</option>
+										<option value="Estado de México">Estado de México</option>
+										<option value="Guanajuato">Guanajuato</option>
+										<option value="Guerrero">Guerrero</option>
+										<option value="Hidalgo">Hidalgo</option>
+										<option value="Jalisco">Jalisco</option>
+										<option value="Michoacán">Michoacán</option>
+										<option value="Morelos">Morelos</option>
+										<option value="Nayarit">Nayarit</option>
+										<option value="Nuevo León">Nuevo León</option>
+										<option value="Oaxaca">Oaxaca</option>
+										<option value="Puebla">Puebla</option>
+										<option value="Querétaro">Querétaro</option>
+										<option value="Quintana Roo">Quintana Roo</option>
+										<option value="San Luis Potosí">San Luis Potosí</option>
+										<option value="Sinaloa">Sinaloa</option>
+										<option value="Sonora">Sonora</option>
+										<option value="Tabasco">Tabasco</option>
+										<option value="Tamaulipas">Tamaulipas</option>
+										<option value="Tlaxcala">Tlaxcala</option>
+										<option value="Veracruz">Veracruz</option>
+										<option value="Yucatán">Yucatán</option>
+										<option value="Zacatecas">Zacatecas</option>
+									</select>	
+								</div>
+							</div>
+
 							<div class="form-group">								
 								<button type="button" class="btn btn-default pull-right search-btn"><i class="icon icon-search"></i> Buscar</button>
 							</div>
