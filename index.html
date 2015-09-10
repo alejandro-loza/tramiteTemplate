@@ -12,6 +12,8 @@
 	<script src="js/tramite.js"></script>
 	<script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
 
+	<script src="js/sha1.js"></script>
+
 	<script type="text/javascript" src="https://framework-gb-ssl.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
 </head>
 <body>
@@ -237,6 +239,14 @@
 	</main>
 	<script>
 		$(function() {
+
+
+			var shaObj = new jsSHA("SHA-1", "TEXT");
+			shaObj.update("PRESIDENCIAHUTR840605HDFRRB00");
+			var hash = shaObj.getHash("HEX");
+
+			console.log('hex sha1 --> ' + hash);
+
 			$('.search-btn').on('click', function() {
 				tramite.search();
 			});
