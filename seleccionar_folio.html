@@ -1,86 +1,118 @@
 <html class="js svg wf-opensans-i3-active wf-opensans-i4-active wf-opensans-n4-active wf-opensans-n3-active wf-opensans-n6-active wf-opensans-n7-active wf-active" lang="es">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>gob.mx - Trámites</title>
-	<meta name="description" content>
-	<meta name="viewport" content="width=device-width">	
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
-	<link rel="stylesheet" type="text/css" href="css/estilo1.css">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>gob.mx - Trámites</title>
+        <meta name="description" content>
+        <meta name="viewport" content="width=device-width">	
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
+        <link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>	
+        <script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
+        <script src="js/tramite.js"></script>
+        <style type="text/css">
+            #tabla_folios tr:hover td { background: #DDDDDD;}          
+        </style>
+    </head>
+    <body>
+        <main role="main">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="icon icon-home"></i></a></li>
+                    <li><a href="#">Trámites</a></li>
+                </ol>
+                <div class="row tramite-content" style="min-height: 400px;">
+                    <div class="col-md-12">
+                        <h2>Acta de nacimiento</h2>
+                        <hr class="red" />					
+                    </div>
+                    <h4>Seleccionar Folio</h4>
 
-	<link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/plugins.js"></script>
-	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/main.js"></script>	
-	<script src="http://framework-gb.cdn.gob.mx/assets/scripts/vendor/modernizr.js"></script>
-	<script src="js/tramite.js"></script>
-</head>
-<body>
-	<main role="main">
-		<div class="container">
-			<ol class="breadcrumb">
-				<li><a href="#"><i class="icon icon-home"></i></a></li>
-				<li><a href="#">Trámites</a></li>
-			</ol>
-			<div class="row tramite-content" style="min-height: 400px;">
-				<div class="col-md-12">
-					<h2>Acta de nacimiento</h2>
-					<hr class="red" />					
-				</div>
-				<h4>Seleccionar Folio</h4>
-				
-				<div>
-						<table>
-						   	<tr>
-								<th>Folio</th>
-								<th>Nombre Completo</th>
-								<th>Nombre Padre</th>
-								<th>Nombre Madre</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>123456</td>
-								<td>Alejandro Hernández Loza</td>
-								<td>Gabriel Hernández Amador</td>
-								<td>Imelda Loza Vera</td>
-							</tr>
-							<tr>
-								<td>654321</td>
-								<td>Abraham Saldívar Sánchez</td>
-								<td>Moises Saldívar Herrrera</td>
-								<td>Carmne Sánchez Flores</td>
-							</tr>
-							<tr>
-								<td>987543</td>
-								<td>Jhon Doe</td>
-								<td>Chris Doe</td>
-								<td>Margarita Maza de Doe</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</table>
-					</div>
-				    <div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Panel title</h3>
-						</div>
-						<div class="panel-body">
-							Panel content
-						</div>
-					</div>	
-								
-			</div>
-		</div>
-	</main>
-	<script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
-	<script>
-		
-	</script>
-</body>
+                    <table border="0" style="width: 100%;">
+                        <tr>
+                            <td>
+                                <table id="tabla_folios" class="table table-striped" style="width: 600px;" >
+                                    <tr>
+                                        <th>Folio</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Nombre Padre</th>
+                                        <th>Nombre Madre</th>
+                                    </tr>                                                       
+                                    <tr onclick="mostrar('Alejandro Hernández Loza');">
+                                        <td>123456</td>
+                                        <td>Alejandro Hernández Loza</td>
+                                        <td>Gabriel Hernández Amador</td>
+                                        <td>Imelda Loza Vera</td>
+                                    </tr>
+                                    <tr onclick="mostrar('Abraham Saldívar Sánchez');">
+                                        <td>654321</td>
+                                        <td>Abraham Saldívar Sánchez</td>
+                                        <td>Moises Saldívar Herrrera</td>
+                                        <td>Carmen Sánchez Flores</td>
+                                    </tr>
+                                    <tr onclick="mostrar('Jhon Doe');">
+                                        <td>987543</td>
+                                        <td>Jhon Doe</td>
+                                        <td>Chris Doe</td>
+                                        <td>Margarita Maza de Doe</td>
+                                    </tr>                            
+                                </table>
+                            </td>
+
+                            <td>
+                                <div id="acta" class="panel panel-default" style="width: 500px; margin: 0 auto; display: none;">
+                                    <div class="panel-heading">
+                                        <table border="0" style="width: 100%;">
+                                            <tr>
+                                                <td>
+                                                    <img src="images/logito.png" width="150" height="50">
+                                                </td>
+                                                <td align="center">
+                                                    <h6>ESTADOS UNIDOS MEXICANOS</h6>
+                                                    <h6>Acta de Nacimiento</h6>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div style="font-size: 8pt; text-align: center;">
+                                        <b>REGISTRO CIVIL</b>
+                                        <br/>
+                                        Entidad Federativa: Puebla
+                                        <br/>
+                                        Clave de registro e Identidad Personal:123456789
+                                        <br/>
+                                        Oficialia: Izucar de Matamoros, Libro 1, Municipio/Delegación:81
+                                        <br/>
+                                        Fecha de Registro: 20 de Diciembre de 1979
+                                        <br/>
+                                        Datos Personales                                       
+                                        <p id="nombre" style="font-size: 9pt; text-align: center; font-weight: bold"></p>                                        
+                                        Nombre(s)   A.Paterno   A.Materno
+                                        <br/>
+                                        Registrado:Vivo
+                                        <br/>
+                                        Sexo: Masculino
+                                        <br/>
+                                        <b>Fecha de nacimiento: 16/09/1979</b>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <script type="text/javascript">
+            function mostrar(nombre) {
+                doc = document.getElementById("acta");
+                doc.style.display = "block";
+                document.getElementById("nombre").innerText = nombre;
+
+                //alert(document.getElementById("nombre").innerHTML);
+                //alert(nombre);
+
+            }
+        </script>
+    </body>
 </html>
