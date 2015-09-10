@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html class="js svg wf-opensans-i3-active wf-opensans-i4-active wf-opensans-n4-active wf-opensans-n3-active wf-opensans-n6-active wf-opensans-n7-active wf-active" lang="es">
 <head>
 	<meta charset="utf-8">
@@ -13,7 +14,8 @@
 	<script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script type="text/javascript" src="https://framework-gb-ssl.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
-	<script src="js/sha1.js"></script>
+	<!-- script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script -->
+	<script type="text/javascript" src="js/sha1.js"></script>
 </head>
 <body>
 	<main role="main">
@@ -246,7 +248,7 @@
 		var hash = shaObj.getHash("HEX");
 
 		console.log('hex sha1 --> ' + hash);
-			
+
 		$('.search-btn').on('click', function() {
 			tramite.search();
 		});
@@ -263,6 +265,10 @@
 				}*/				
 			});
 		$('.next_step').on('click', function() { tramite.next_step(); });
+	});
+
+	$(window).load(function() {
+		tramite.init();
 	});
 </script>
 
