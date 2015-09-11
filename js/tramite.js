@@ -56,7 +56,7 @@ tramite = {
 			}),
 			success: function(response) {
 				//steps: selected step + 1 
-				 actaResponse = response.return.nacimientos;
+				 actaResponse = response.return.nacimientos[0];
 
 			},
 			error: function(e) {
@@ -73,12 +73,11 @@ tramite = {
         }, 1000);       
     },
     addActa: function (actaResponse) {        
-       alert(actaResponse);
 
         var camposActa=['folio','oficialia','foja','libro','noActa','nombre','fechaNacimiento','curp','estadoNacNombre','nacionalidad','nombre','primerApellido','segundoApellido','sexo','vivoMuerto'];           
         for(x=0; x<camposActa.length; x++){ 
             var acta = $("<p style='font-size: 8pt; text-align: center;'/>")
-            acta.text(Object.keys(actaResponse[0])[x] +':'+ actaResponse[0][camposActa[x]])
+            acta.text(camposActa[x] +':'+ actaResponse[camposActa[x]])
             acta.appendTo('.detalle-acta');
         }
                        
