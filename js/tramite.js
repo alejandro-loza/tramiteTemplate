@@ -2,7 +2,7 @@ tramite = {
 	//ls: 'gobmx-tramites-v1',
 	ls: 'gob_mx_session_token:atuh-manager-v1.0',
 	//url: "http://172.20.161.4:7101/",
-	url: "http://10.15.109.2:7101/",
+	url: "http://10.15.3.32/",
 	ws: "ActaNac/RestService/ActaNac/byCURP",
 	rightNow: '',
 	steps: ['buscar','preview','checkout','confirmation'],
@@ -105,10 +105,11 @@ tramite = {
 			}),
 			success: function(response) {
 				//steps: selected step + 1 
-				alert(response.nacimientos[0]);
+				var filteredResponse = JSON.stringify(response.return.nacimientos[0]);
+				alert(filteredResponse);
 			},
-			error: function() {
-
+			error: function(e) {
+				alert("error" + e )
 			}
 		});
 		
