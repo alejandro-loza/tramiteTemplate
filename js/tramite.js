@@ -1,6 +1,8 @@
 tramite = {
-    url: "http://localhost:8080/",
-    ws: "ws/bla",
+    //ls: 'gobmx-tramites-v1',
+    ls: 'gob_mx_session_token:atuh-manager-v1.0',
+    url: "http://10.15.3.32/",
+    ws: "ActaNac/RestService/ActaNac/byCURP",
     steps: ['buscar', 'preview', 'select-folio', 'checkout', 'confirmation'],
     step: 0,
     init: function () {
@@ -33,27 +35,48 @@ tramite = {
     search: function () {
 
         var controller = this;
-        //$('')
+        var actaResponse;
 
-        var actaResponse = [{"folio": "12AD23", "nombre": "Juan", "apellido": "Gomez"}];
+        $.ajax({
+            url: this.url + this.ws,
+            type: 'POST',
+            contentType: "application/json",
+            dataType: 'json',
+            crossOrigin: true,
+            crossDomain: true,
+            data: JSON.stringify({
+                "dependencia": "PRESIDENCIA",
+                "curp": "HUTR840605HDFRRB00",
+                "hash": "b09ffbf37a4a284c9fdff4f2c5532f22ae454486",
+                "isImg": 0
+            }),
+            success: function (response) {
+                //steps: selected step + 1 
+                actaResponse = response.return.nacimientos[0];
+
+            },
+            error: function (e) {
+                alert("error" + e)
+            }
+        });
 
         $('#folios').removeClass('hidden').show('slow');
 
         setTimeout(function () {
             $('#folios .loader').hide('fast', function () {
-                controller.addFolios(actaResponse);
+                controller.addActa(actaResponse);
             });
-        }, 1000);       
+        }, 1000);
     },
-    addFolios: function (actaResponse) {        
+    addActa: function (actaResponse) {
 
-        var camposActa=['folio','oficialia','foja','libro','noActa','nombre','fechaNacimiento','curp','estadoNacNombre','nacionalidad','nombre','primerApellido','segundoApellido','sexo','vivoMuerto'];           
-        for(x=0; x<camposActa.length; x++){ 
+        var camposActa = ['folio', 'oficialia', 'foja', 'libro', 'noActa', 'nombre', 'fechaNacimiento', 'curp', 'estadoNacNombre', 'nacionalidad', 'nombre', 'primerApellido', 'segundoApellido', 'sexo', 'vivoMuerto'];
+        for (x = 0; x < camposActa.length; x++) {
             var acta = $("<p style='font-size: 8pt; text-align: center;'/>")
-            acta.text(Object.keys(actaResponse[0])[x] +':'+ actaResponse[0][camposActa[x]])
+            acta.text(camposActa[x] + ':' + actaResponse[camposActa[x]])
             acta.appendTo('.detalle-acta');
         }
-                       
+
 
     },
     selectFolio: function (element) {
