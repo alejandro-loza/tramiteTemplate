@@ -41,31 +41,19 @@ tramite = {
 
         setTimeout(function () {
             $('#folios .loader').hide('fast', function () {
-                controller.addFolios(actaResponse);
+                controller.addActa(actaResponse);
             });
         }, 1000);
-        /*
-         $.ajax({
-         url: controller.url + controller.ws,
-         type: 'GET',
-         success: function() {
-         //steps: selected step + 1 
-         },
-         error: function() {
-         
-         }
-         });
-         */
     },
-    addFolios: function (actaResponse) {        
+    addActa: function (actaResponse) {
 
-        var camposActa=['folio','nombre','apellido'];           
-        for(x=0; x<=camposActa.length; x++){ 
-            var acta = $("<h6/><br/>")
-            acta.text(actaResponse[0][camposActa[x]])
+        var camposActa = ['folio', 'oficialia', 'foja', 'libro', 'noActa', 'nombre', 'fechaNacimiento', 'curp', 'estadoNacNombre', 'nacionalidad', 'nombre', 'primerApellido', 'segundoApellido', 'sexo', 'vivoMuerto'];
+        for (x = 0; x < camposActa.length; x++) {
+            var acta = $("<p style='font-size: 8pt; text-align: center;'/>")
+            acta.text(Object.keys(actaResponse[0])[x] + ':' + actaResponse[0][camposActa[x]])
             acta.appendTo('.detalle-acta');
         }
-                       
+
 
     },
     selectFolio: function (element) {
