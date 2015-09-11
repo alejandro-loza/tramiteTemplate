@@ -35,13 +35,13 @@ tramite = {
         var controller = this;
         //$('')
 
-        var data = '[{"folio": "12AD23", "nombre": "Juan", "apellido": "Gomez"}]';
+        var actaResponse = [{"folio": "12AD23", "nombre": "Juan", "apellido": "Gomez"}];
 
         $('#folios').removeClass('hidden').show('slow');
 
         setTimeout(function () {
             $('#folios .loader').hide('fast', function () {
-                controller.addFolios(data);
+                controller.addFolios(actaResponse);
             });
         }, 1000);
         /*
@@ -57,27 +57,15 @@ tramite = {
          });
          */
     },
-    addFolios: function (data) {
-        /*	var controller = this;
-         data.forEach(function(folio) {	
-         var folio = $('<div/>')
-         .data('folio', folio.folio)
-         .addClass('folio col-md-12')
-         .css({'background-color':'#ececec','margin-bottom':'8px','padding':'10px'})
-         .text(folio.folio)
-         .on('click', function() {controller.selectFolio(this) })
-         .appendTo('.folios-holder');
-         });*/        
+    addFolios: function (actaResponse) {        
 
-        //var datos = JSON.parse(data);
-
-       // for (var i = 0; i < datos.length; i++)
-            var acta = $('<div/>')
-                .data("REGISTRO CIVIL")
-                //.text("REGISTRO CIVIL")
-                .appendTo('.detalle-acta');
-        
-            //alert('Folio: ' + datos[i].folio + ' Nombre: ' + datos[i].nombre + ' Apellido: ' + datos[i].apellido);
+        var camposActa=['folio','nombre','apellido'];           
+        for(x=0; x<=camposActa.length; x++){ 
+            var acta = $("<h6/><br/>")
+            acta.text(actaResponse[0][camposActa[x]])
+            acta.appendTo('.detalle-acta');
+        }
+                       
 
     },
     selectFolio: function (element) {
