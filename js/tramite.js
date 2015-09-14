@@ -2,7 +2,8 @@ tramite = {
     //ls: 'gobmx-tramites-v1',
     ls: 'gob_mx_session_token:atuh-manager-v1.0',
     url: "http://10.15.3.32",      
-    ws:  "/ActaNac/RestService/ActaNac/byCURP",        
+    wsCURP:  "/ActaNac/RestService/ActaNac/byCURP",  
+    wsPDF: "/ActaNac/RestService/ActaNac/getPDF",        
     steps: ['buscar', 'preview', 'checkout', 'confirmation'],
     step: 0,
     init: function () {
@@ -45,7 +46,7 @@ tramite = {
         //alert (hash);
         
         $.ajax({
-            url: this.url + this.ws,
+            url: this.url + this.wsCURP,
             type: 'POST',            
             contentType: "application/json",            
             dataType: 'json',
@@ -108,5 +109,33 @@ tramite = {
         //$('section').addClass('hidden');
         //$('.confirmation').removeClass('hidden');
         $('.exito').removeClass('hidden');
-    }
+    },
+    download: function () {
+    	var pdf;
+    	alert("entraChido");
+    	    	 $.ajax({
+    	            url: this.url + this.wsPDF,
+    	            type: 'POST',            
+    	            contentType: "application/json",            
+    	            dataType: 'json',
+    	            crossOrigin: true,
+    	            crossDomain: true,
+    	            data: JSON.stringify({
+    	               	{
+    						"arg0": 87767
+    					}
+    	            }),
+    	            success: function (response) {
+    	                pdf = response.return;
+    	                alert("Respuesta: " + pdf);
+
+    	            },
+    	            error: function (e) {
+    	                alert("Error: " + e);
+    	            }
+    	        });
+
+
+
+    },   
 }

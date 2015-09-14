@@ -342,6 +342,9 @@
                 $('.search-btn').on('click', function () {
                     tramite.search();
                 });
+                $('.download-btn').on('click', function () {
+                    tramite.download();
+                });
                 $('.select-payment').on('click', function () {
                     $('.tipo-pago').addClass('hidden');
                     console.log(' radio? ' + $("input[name=radio-01]:checked").val());
