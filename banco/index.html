@@ -12,12 +12,43 @@
 		<link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>	
-		<script src="js/tramite.js"></script>
+		<script src="banco.js"></script>
 		<script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 		<script type="text/javascript" src="https://framework-gb-ssl.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>		
 	</head>
 	<body>
-
+		<div class="row vertical-buffer clearfix">
+			<section>
+				<div class="pago-tarjeta col-md-4 col-md-offset-4">
+	                <div class="form-group">
+	                    <label for="nombre-tarjeta">Nombre en la tarjeta</label>
+	                    <input type="text" name="nombre-tarjeta" id="nombre-tarjeta" class="form-control" />
+	                </div>
+	                <div class="form-group">
+	                    <label for="nombre-tarjeta">Número en la tarjeta</label>
+	                    <input type="text" name="nombre-tarjeta" id="nombre-tarjeta" class="form-control" />
+	                </div>
+	                <div class="form-group">
+	                    <label for="ccv">CCV</label>
+	                    <input type="text" name="ccv" id="ccv" class="form-control" />
+	                </div>
+	                <div class="form-group">
+	                    <label for="fecha">Fecha de vencimiento</label>
+	                    <input type="text" name="fecha" id="fecha" class="form-control" />
+	                </div>
+	                <div class="form-group">
+	                    <button type="button" class="btn btn-success next_step pull-right">Proceder a pagar</button>
+	                </div>
+	            </div>
+			</section>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				$('.btn-success').bind('click', function(event) {
+					banco.sendBack();
+				});				
+			});
+		</script>
 	</body>
 </html>
