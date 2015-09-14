@@ -10,7 +10,7 @@ tramite = {
         //console.log(' -------> ' + window.location.toString().split('?')[1] );
 
         //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 2, "expires":"Mon, 14 Sep 2015 13:20:00 UTC;"}, "status": 201}');
-        
+        //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 0, "expires":"Mon Sep 14 2015 16:10:00 GMT-0500"}, "status": 201}');
         if( localStorage.getItem(this.ls) != null ) {
             //console.log('session exists');            
             var key = JSON.parse(window.localStorage[this.ls]);
@@ -46,7 +46,10 @@ tramite = {
                 //delete window.localStorage[this.ls]
                 this.step = 0;
             }           
-        } else { this.step = 0; }
+        } else { 
+            //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 2, "expires":"Mon, 14 Sep 2015 13:20:00 UTC;"}, "status": 201}');
+            this.step = 0; 
+        }
         
     },
     current_step: function () {

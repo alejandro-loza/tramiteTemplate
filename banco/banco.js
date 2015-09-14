@@ -1,4 +1,7 @@
 banco = {
+	init: function() {
+
+	},
 	sendBack: function() {
 		console.log('location --> ' + location.toString().split('/')[3] );
 		var newLoc = location.toString();
