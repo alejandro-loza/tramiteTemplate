@@ -2,14 +2,9 @@ tramite = {
     //ls: 'gobmx-tramites-v1',
     ls: 'gob_mx_session_token:auth-manager-v0.1',
     url: "http://10.15.3.32",      
-<<<<<<< HEAD
-    ws:  "/ActaNac/RestService/ActaNac/byCURP",        
-    steps: ['buscar', 'preview', 'checkout', 'confirmation','excepction'],
-=======
     wsCURP:  "/ActaNac/RestService/ActaNac/byCURP",  
     wsPDF: "/ActaNac/RestService/ActaNac/getPDF",        
     steps: ['buscar', 'preview', 'checkout', 'confirmation'],
->>>>>>> feature/pdf
     step: 0,
     actaResponse: '',
     init: function () {
