@@ -1,5 +1,9 @@
 banco = {
-	sendBack: function() {		
-		location.href = 'http://127.0.0.1:8888/tramite-template/index.html?q=success';
+	sendBack: function() {
+		console.log('location --> ' + location.toString().split('/')[3] );
+		var newLoc = location.toString();
+		
+		var jumpTo = newLoc.split('/')[0] + '//' + newLoc.split('/')[2] +'/'+ newLoc.split('/')[3]  + '?q=success';
+		location.href = jumpTo;
 	}
 }
