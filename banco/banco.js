@@ -6,7 +6,13 @@ banco = {
 		console.log('location --> ' + location.toString().split('/')[3] );
 		var newLoc = location.toString();
 		
+		$('.pago-tarjeta').addClass('hidden');
+		$('.loader').removeClass('hidden');
+
 		var jumpTo = newLoc.split('/')[0] + '//' + newLoc.split('/')[2] +'/'+ newLoc.split('/')[3]  + '?q=success';
-		location.href = jumpTo;
+
+		setTimeout(function () {
+            location.href = jumpTo;
+        }, 1400);
 	}
 }
