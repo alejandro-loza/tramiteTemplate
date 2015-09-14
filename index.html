@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html class="js svg wf-opensans-i3-active wf-opensans-i4-active wf-opensans-n4-active wf-opensans-n3-active wf-opensans-n6-active wf-opensans-n7-active wf-active" lang="es">
 
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>gob.mx - Trámites</title>
-	<meta name="description" content>
-	<meta name="viewport" content="width=device-width">	
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
-	<link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>		
-	<script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
-	<script src='https://www.google.com/recaptcha/api.js'></script>
-	<script type="text/javascript" src="https://framework-gb-ssl.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
-	<!-- script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script -->
-	<script type="text/javascript" src="js/sha1.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>gob.mx - Trámites</title>
+        <meta name="description" content>
+        <meta name="viewport" content="width=device-width">	
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
+        <link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">	
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>		
+        <script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script type="text/javascript" src="https://framework-gb-ssl.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+        <!-- script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script -->
+        <script type="text/javascript" src="js/sha1.js"></script>
         <script src="js/tramite.js"></script>
-</head>
+    </head>
 
     <body>
         <main role="main">
@@ -316,14 +315,14 @@
                         <!-- div class="pago-paypal"></div -->
                     </section>
                     <section class="confirmation hidden">
-                        <div class="col-md-4 col-md-offset-4">
+                        <div class="col-md-6 col-md-offset-4">
                             <div class="loader" style="text-align: center; margin-top: 20%;">
                                 <img src="images/oval.svg" width="50" alt="">
                             </div>
-                            <div class="exito hidden">
-                                <h1>Pago realizado exitosamente</h1>
-                                <p></p>
-                                 <button type="button" class="btn btn-primary pull-right download-btn"><i class="glyphicon glyphicon-download-alt"></i>Descargar Acta</button>
+                            <div>
+                                <h3>Pago realizado exitosamente!</h3>
+                                <p><button type="button" class="btn btn-primary download-btn"><i class="glyphicon glyphicon-download-alt"></i>Descargar Acta</button>
+                                <button type="button" class="btn btn-primary recibo-btn"><i class="glyphicon glyphicon-list-alt"></i>Generar Recibo de Pago</button></p>                                
                             </div>
                         </div>
                     </section>
@@ -344,6 +343,9 @@
                 });
                 $('.download-btn').on('click', function () {
                     tramite.download();
+                });
+                $('.recibo-btn').on('click', function () {
+                    window.open('recibo_pago.html','_blank');
                 });
                 $('.select-payment').on('click', function () {
                     $('.tipo-pago').addClass('hidden');

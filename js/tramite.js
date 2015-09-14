@@ -1,9 +1,9 @@
 tramite = {
     //ls: 'gobmx-tramites-v1',
     ls: 'gob_mx_session_token:atuh-manager-v1.0',
-    url: "http://10.15.3.32",      
-    wsCURP:  "/ActaNac/RestService/ActaNac/byCURP",  
-    wsPDF: "/ActaNac/RestService/ActaNac/getPDF",        
+    url: "http://10.15.3.32",
+    wsCURP: "/ActaNac/RestService/ActaNac/byCURP",
+    wsPDF: "/ActaNac/RestService/ActaNac/getPDF",
     steps: ['buscar', 'preview', 'checkout', 'confirmation'],
     step: 0,
     actaResponse: '',
@@ -41,14 +41,14 @@ tramite = {
         //alert (curp);
 
         var shaObj = new jsSHA("SHA-1", "TEXT");
-        shaObj.update("PRESIDENCIA"+curp);
+        shaObj.update("PRESIDENCIA" + curp);
         var hash = shaObj.getHash("HEX");
         //alert (hash);
-        
+
         $.ajax({
             url: this.url + this.wsCURP,
-            type: 'POST',            
-            contentType: "application/json",            
+            type: 'POST',
+            contentType: "application/json",
             dataType: 'json',
             crossOrigin: true,
             crossDomain: true,
@@ -111,23 +111,23 @@ tramite = {
         $('.exito').removeClass('hidden');
     },
     download: function () {
-    	var pdf;
-    	$.ajax({
+        var pdf;
+        $.ajax({
             url: this.url + this.wsPDF,
-            type: 'POST',            
-            contentType: "application/json",            
+            type: 'POST',
+            contentType: "application/json",
             dataType: 'json',
             crossOrigin: true,
             crossDomain: true,
-            data: JSON.stringify({               	
-					"arg0": actaResponse.folio				
+            data: JSON.stringify({
+                "arg0": actaResponse.folio
             }),
             success: function (response) {
                 pdf = response.return.Reporte;
-                setTimeout(function(){
-                	var url = 'data:aplication/pdf;base64,' + pdf ;
-                	window.open(url);
-                },3000);
+                setTimeout(function () {
+                    var url = 'data:aplication/pdf;base64,' + pdf;
+                    window.open(url);
+                }, 3000);
             },
             error: function (e) {
                 alert("Error: " + e);
@@ -136,5 +136,5 @@ tramite = {
 
 
 
-    },   
+    },
 }
