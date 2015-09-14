@@ -1,14 +1,60 @@
 tramite = {
     //ls: 'gobmx-tramites-v1',
-    ls: 'gob_mx_session_token:atuh-manager-v1.0',
+    ls: 'gob_mx_session_token:auth-manager-v0.1',
     url: "http://10.15.3.32",      
     ws:  "/ActaNac/RestService/ActaNac/byCURP",        
-    steps: ['buscar', 'preview', 'checkout', 'confirmation'],
+    steps: ['buscar', 'preview', 'checkout', 'confirmation','excepction'],
     step: 0,
     init: function () {
+        var controller = this;
+        //console.log(' -------> ' + window.location.toString().split('?')[1] );
+
+        //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 2, "expires":"Mon, 14 Sep 2015 13:20:00 UTC;"}, "status": 201}');
+        
+        if( localStorage.getItem(this.ls) != null ) {
+            //console.log('session exists');            
+            var key = JSON.parse(window.localStorage[this.ls]);
+            var token = key.json.token;     
+            var expires = new Date(key.json.expires);
+            this.rightNow = new Date();
+            
+            if( expires.getTime() > this.rightNow.getTime() ) {
+                console.log('still alive');
+
+                if( window.location.toString().split('=')[1] == 'success') {
+                    controller.step = 3;                    
+                } else if( window.location.toString().split('=')[1] == 'excepction') {
+                    controller.step = 4;
+                } else {
+                    this.step = 0;
+                }
+
+                /* TODO TOKEN AJAX
+                $.ajax({
+                    url: '/authToken',
+                    dataType: '',
+                    success: function() {
+
+                    }
+                });*/
+
+                console.log(' step ---> ' + this.step);
+                this.current_step();
+
+            } else {
+                console.log('expired');
+                //delete window.localStorage[this.ls]
+                this.step = 0;
+            }           
+        } else { this.step = 0; }
+        
     },
     current_step: function () {
-
+        var controller = this;
+        var current_step = this.step;
+        console.log(' current_step ---> ' + controller.steps[current_step] );
+        $('section').addClass('hidden');
+        $('.'+controller.steps[current_step]).removeClass('hidden');
     },
     next_step: function () {
         var controller = this;

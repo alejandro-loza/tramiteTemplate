@@ -269,8 +269,10 @@
                             </tr>
                         </table>
                     </section>
-                    <section class="mistake hidden">
-
+                    <section class="excepction hidden">
+                        <div class="col-md-4 col-md-offset-4 vertica-buffer">
+                            <h1>Epic Fail</h1>
+                        </div>
                     </section>
                     <section class="checkout hidden">
                         <div class="tipo-pago col-md-4 col-md-offset-4">
@@ -317,10 +319,10 @@
                     </section>
                     <section class="confirmation hidden">
                         <div class="col-md-4 col-md-offset-4">
-                            <div class="loader" style="text-align: center; margin-top: 20%;">
+                            <div class="loader  hidden" style="text-align: center; margin-top: 20%;">
                                 <img src="images/oval.svg" width="50" alt="">
                             </div>
-                            <div class="exito hidden">
+                            <div class="exito">
                                 <h1>Pago realizado exitosamente</h1>
                                 <p></p>
                                 <a href="#">Descargar acta</a>
@@ -367,6 +369,10 @@
                 //alert(document.getElementById("nombre").innerHTML);
                 //alert(nombre);
             }
+
+            $(window).load(function() {
+                tramite.init();
+            });
         </script>
     </body>
 </html>
