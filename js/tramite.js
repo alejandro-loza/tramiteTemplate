@@ -113,6 +113,7 @@ tramite = {
     download: function () {
     	var pdf;
     	alert("entraChido");
+
     	    	 $.ajax({
     	            url: this.url + this.wsPDF,
     	            type: 'POST',            
@@ -121,9 +122,9 @@ tramite = {
     	            crossOrigin: true,
     	            crossDomain: true,
     	            data: JSON.stringify({
-    	               	{
+    	               	
     						"arg0": 87767
-    					}
+    					
     	            }),
     	            success: function (response) {
     	                pdf = response.return;
