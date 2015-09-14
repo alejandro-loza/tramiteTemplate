@@ -112,29 +112,27 @@ tramite = {
     },
     download: function () {
     	var pdf;
-    	alert("entraChido");
-
-    	    	 $.ajax({
-    	            url: this.url + this.wsPDF,
-    	            type: 'POST',            
-    	            contentType: "application/json",            
-    	            dataType: 'json',
-    	            crossOrigin: true,
-    	            crossDomain: true,
-    	            data: JSON.stringify({
-    	               	
-    						"arg0": 87767
-    					
-    	            }),
-    	            success: function (response) {
-    	                pdf = response.return;
-    	                alert("Respuesta: " + pdf);
-
-    	            },
-    	            error: function (e) {
-    	                alert("Error: " + e);
-    	            }
-    	        });
+    	$.ajax({
+            url: this.url + this.wsPDF,
+            type: 'POST',            
+            contentType: "application/json",            
+            dataType: 'json',
+            crossOrigin: true,
+            crossDomain: true,
+            data: JSON.stringify({               	
+					"arg0": 87767				
+            }),
+            success: function (response) {
+                pdf = response.return.Reporte;
+                setTimeout(function(){
+                	var url = 'data:aplication/pdf;base64,' + pdf ;
+                	window.open(url);
+                },3000);
+            },
+            error: function (e) {
+                alert("Error: " + e);
+            }
+        });
 
 
 
