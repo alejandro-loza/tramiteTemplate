@@ -153,7 +153,7 @@
                                 </div>
 
                                 <div class="form-group clearfix">	
-                                    <button type="button" class="btn btn-default pull-right search-btn next_step"><i class="icon icon-search"></i> Buscar</button>
+                                    <button type="button" class="btn btn-primary pull-right search-btn next_step"><i class="icon icon-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -325,7 +325,7 @@
                             <div class="exito">
                                 <h1>Pago realizado exitosamente</h1>
                                 <p></p>
-                                <a href="#">Descargar acta</a>
+                                 <button type="button" class="btn btn-primary pull-right download-btn"><i class="glyphicon glyphicon-download-alt"></i>Descargar Acta</button>
                             </div>
                         </div>
                     </section>
@@ -343,6 +343,9 @@
 
                 $('.search-btn').on('click', function () {
                     tramite.search();
+                });
+                $('.download-btn').on('click', function () {
+                    tramite.download();
                 });
                 $('.select-payment').on('click', function () {
                     $('.tipo-pago').addClass('hidden');

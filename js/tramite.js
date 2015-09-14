@@ -2,9 +2,11 @@ tramite = {
     //ls: 'gobmx-tramites-v1',
     ls: 'gob_mx_session_token:auth-manager-v0.1',
     url: "http://10.15.3.32",      
-    ws:  "/ActaNac/RestService/ActaNac/byCURP",        
-    steps: ['buscar', 'preview', 'checkout', 'confirmation','excepction'],
+    wsCURP:  "/ActaNac/RestService/ActaNac/byCURP",  
+    wsPDF: "/ActaNac/RestService/ActaNac/getPDF",        
+    steps: ['buscar', 'preview', 'checkout', 'confirmation'],
     step: 0,
+    actaResponse: '',
     init: function () {
         var controller = this;
         //console.log(' -------> ' + window.location.toString().split('?')[1] );
@@ -84,7 +86,6 @@ tramite = {
     search: function () {
 
         var controller = this;
-        var actaResponse;
         var curp = document.getElementById("CURP").value;
         //alert (curp);
 
@@ -94,7 +95,7 @@ tramite = {
         //alert (hash);
         
         $.ajax({
-            url: this.url + this.ws,
+            url: this.url + this.wsCURP,
             type: 'POST',            
             contentType: "application/json",            
             dataType: 'json',
@@ -157,5 +158,32 @@ tramite = {
         //$('section').addClass('hidden');
         //$('.confirmation').removeClass('hidden');
         $('.exito').removeClass('hidden');
-    }
+    },
+    download: function () {
+    	var pdf;
+    	$.ajax({
+            url: this.url + this.wsPDF,
+            type: 'POST',            
+            contentType: "application/json",            
+            dataType: 'json',
+            crossOrigin: true,
+            crossDomain: true,
+            data: JSON.stringify({               	
+					"arg0": actaResponse.folio				
+            }),
+            success: function (response) {
+                pdf = response.return.Reporte;
+                setTimeout(function(){
+                	var url = 'data:aplication/pdf;base64,' + pdf ;
+                	window.open(url);
+                },3000);
+            },
+            error: function (e) {
+                alert("Error: " + e);
+            }
+        });
+
+
+
+    },   
 }
