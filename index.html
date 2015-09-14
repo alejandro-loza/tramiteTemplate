@@ -348,7 +348,7 @@
                     $('.tipo-pago').addClass('hidden');
                     console.log(' radio? ' + $("input[name=radio-01]:checked").val());
                     if ($("input[name=radio-01]:checked").val() == 'opcion-01') {
-                        $('.pago-tarjeta').removeClass('hidden');
+                        window.location = 'http://127.0.0.1:8888/tramite-template/banco/index.html';
                     } else if ($("input[name=radio-01]:checked").val() == 'opcion-02') {
                         $('.pago-banco').removeClass('hidden');
                     }
