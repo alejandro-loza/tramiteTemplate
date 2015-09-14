@@ -1,9 +1,9 @@
 tramite = {
     //ls: 'gobmx-tramites-v1',
     ls: 'gob_mx_session_token:atuh-manager-v1.0',
-    url: "http://10.15.3.32/",
-    ws: "ActaNac/RestService/ActaNac/byCURP",
-    steps: ['buscar', 'preview', 'select-folio', 'checkout', 'confirmation'],
+    url: "http://10.15.3.32",      
+    ws:  "/ActaNac/RestService/ActaNac/byCURP",        
+    steps: ['buscar', 'preview', 'checkout', 'confirmation'],
     step: 0,
     init: function () {
     },
@@ -36,27 +36,37 @@ tramite = {
 
         var controller = this;
         var actaResponse;
+        var curp = document.getElementById("CURP").value;
+        //alert (curp);
 
+        var shaObj = new jsSHA("SHA-1", "TEXT");
+        shaObj.update("PRESIDENCIA"+curp);
+        var hash = shaObj.getHash("HEX");
+        //alert (hash);
+        
         $.ajax({
             url: this.url + this.ws,
-            type: 'POST',
-            contentType: "application/json",
+            type: 'POST',            
+            contentType: "application/json",            
             dataType: 'json',
             crossOrigin: true,
             crossDomain: true,
             data: JSON.stringify({
                 "dependencia": "PRESIDENCIA",
-                "curp": "HUTR840605HDFRRB00",
-                "hash": "b09ffbf37a4a284c9fdff4f2c5532f22ae454486",
+                //"curp": "HUTR840605HDFRRB00",
+                "curp": curp,
+                //hash": "b09ffbf37a4a284c9fdff4f2c5532f22ae454486",                           
+                "hash": hash,
                 "isImg": 0
             }),
             success: function (response) {
                 //steps: selected step + 1 
                 actaResponse = response.return.nacimientos[0];
+                //alert("Respuesta: " + actaResponse);
 
             },
             error: function (e) {
-                alert("error" + e)
+                alert("Error: " + e);
             }
         });
 
@@ -70,7 +80,7 @@ tramite = {
     },
     addActa: function (actaResponse) {
 
-        var camposActa = ['folio', 'oficialia', 'foja', 'libro', 'noActa', 'nombre', 'fechaNacimiento', 'curp', 'estadoNacNombre', 'nacionalidad', 'nombre', 'primerApellido', 'segundoApellido', 'sexo', 'vivoMuerto'];
+        var camposActa = ['folio', 'oficialia', 'foja', 'libro', 'noActa', 'fechaNacimiento', 'curp', 'estadoNacNombre', 'nombre', 'primerApellido', 'segundoApellido', 'sexo', 'vivoMuerto'];
         for (x = 0; x < camposActa.length; x++) {
             var acta = $("<p style='font-size: 8pt; text-align: center;'/>")
             acta.text(camposActa[x] + ':' + actaResponse[camposActa[x]])
