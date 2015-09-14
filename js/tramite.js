@@ -6,6 +6,7 @@ tramite = {
     wsPDF: "/ActaNac/RestService/ActaNac/getPDF",        
     steps: ['buscar', 'preview', 'checkout', 'confirmation'],
     step: 0,
+    actaResponse: '',
     init: function () {
     },
     current_step: function () {
@@ -36,7 +37,6 @@ tramite = {
     search: function () {
 
         var controller = this;
-        var actaResponse;
         var curp = document.getElementById("CURP").value;
         //alert (curp);
 
@@ -120,7 +120,7 @@ tramite = {
             crossOrigin: true,
             crossDomain: true,
             data: JSON.stringify({               	
-					"arg0": 87767				
+					"arg0": actaResponse.folio				
             }),
             success: function (response) {
                 pdf = response.return.Reporte;
