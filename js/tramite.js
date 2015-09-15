@@ -155,15 +155,17 @@ tramite = {
         $('.exito').removeClass('hidden');
     },
     download: function () {
+
     	var pdf;
         var controller = this;
         var folio = JSON.parse(window.localStorage[controller.ls]).json.folio;
         $('.download-loading').removeClass('hidden');
 
     	$.ajax({
+
             url: this.url + this.wsPDF,
-            type: 'POST',            
-            contentType: "application/json",            
+            type: 'POST',
+            contentType: "application/json",
             dataType: 'json',
             crossOrigin: true,
             crossDomain: true,
@@ -178,6 +180,7 @@ tramite = {
                     console.log('start download');
                     $('.download-loading').addClass('hidden');
                 },3000);
+
             },
             error: function (e) {
                 alert("Error: " + e);
