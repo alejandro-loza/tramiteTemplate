@@ -1,9 +1,9 @@
 tramite = {
     //ls: 'gobmx-tramites-v1',
-    ls: 'gob_mx_session_token:auth-manager-v0.1',
-    url: "http://10.15.3.32",      
-    wsCURP:  "/ActaNac/RestService/ActaNac/byCURP",  
-    wsPDF: "/ActaNac/RestService/ActaNac/getPDF",        
+    ls: 'gob_mx_session_token:atuh-manager-v1.0',
+    url: "http://10.15.3.32",
+    wsCURP: "/ActaNac/RestService/ActaNac/byCURP",
+    wsPDF: "/ActaNac/RestService/ActaNac/getPDF",
     steps: ['buscar', 'preview', 'checkout', 'confirmation'],
     step: 0,
     actaResponse: '',
@@ -86,24 +86,29 @@ tramite = {
         var curp = document.getElementById("CURP").value;
 
         var shaObj = new jsSHA("SHA-1", "TEXT");
-        shaObj.update("PRESIDENCIA"+curp);
+        shaObj.update("PRESIDENCIA" + curp);
         var hash = shaObj.getHash("HEX");
 
         $.ajax({
             url: this.url + this.wsCURP,
-            type: 'POST',            
-            contentType: "application/json",            
+            type: 'POST',
+            contentType: "application/json",
             dataType: 'json',
             crossOrigin: true,
             crossDomain: true,
             data: JSON.stringify({
-                "dependencia": "PRESIDENCIA",                
-                "curp": curp,                
+                "dependencia": "PRESIDENCIA",
+                //"curp": "HUTR840605HDFRRB00",
+                "curp": curp,
+                //hash": "b09ffbf37a4a284c9fdff4f2c5532f22ae454486",
                 "hash": hash,
                 "isImg": 0
             }),
             success: function (response) {
-                controller.actaResponse = response.return.nacimientos[0];
+                //steps: selected step + 1
+                actaResponse = response.return.nacimientos[0];
+                //alert("Respuesta: " + actaResponse);
+
             },
             error: function (e) {
                 alert("Error: " + e);
@@ -114,18 +119,20 @@ tramite = {
 
         setTimeout(function () {
             $('#folios .loader').hide('fast', function () {
-                controller.addActa(controller.actaResponse);
+                controller.addActa(actaResponse);
             });
         }, 1000);
     },
     addActa: function (actaResponse) {
-        var controller = this;
+
         var camposActa = ['folio', 'oficialia', 'foja', 'libro', 'noActa', 'fechaNacimiento', 'curp', 'estadoNacNombre', 'nombre', 'primerApellido', 'segundoApellido', 'sexo', 'vivoMuerto'];
         for (x = 0; x < camposActa.length; x++) {
             var acta = $("<p style='font-size: 8pt; text-align: center;'/>")
-            acta.text(camposActa[x] + ':' + controller.actaResponse[camposActa[x]])
+            acta.text(camposActa[x] + ':' + actaResponse[camposActa[x]])
             acta.appendTo('.detalle-acta');
         }
+
+
     },
     selectFolio: function (element) {
         $(element).css({'background-color': '#999'})
@@ -176,5 +183,8 @@ tramite = {
                 alert("Error: " + e);
             }
         });
-    },   
+
+
+
+    },
 }
