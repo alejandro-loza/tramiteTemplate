@@ -358,18 +358,18 @@
                     console.log(' radio? ' + $("input[name=radio-01]:checked").val());
                     if ($("input[name=radio-01]:checked").val() == 'opcion-01') {
 
-                        var item = JSON.parse(localStorage[tramite.ls]);    
-                        var updated = { "json": { "token": item.json.token, "step": item.json.step, "folio": tramite.actaResponse.folio, "expires": item.json.expires }, "status": 201 }                        
+                        //var item = JSON.parse(localStorage[tramite.ls]);    
+                        //var updated = { "json": { "token": item.json.token, "step": item.json.step, "folio": tramite.actaResponse.folio, "expires": item.json.expires }, "status": 201 }
+                        var updated = { "json": { "token": "XXXAB1", "step": "2", "folio": tramite.actaResponse.folio, "expires": "Mon Sep 15 2015 16:10:00 GMT-0500" }, "status": 201 }
                         localStorage.setItem(tramite.ls, JSON.stringify(updated));
 
-                        console.log('item ---< ' + JSON.stringify(item));
+                        //console.log('item ---< ' + JSON.stringify(item));
                         console.log('updated ---< ' + JSON.stringify(updated));
 
                         window.location = window.location+'banco/index.html';
                     } else if ($("input[name=radio-01]:checked").val() == 'opcion-02') {
                         $('.pago-banco').removeClass('hidden');
                     }
-
                     /*else if ( $("input[name=radio-01]:checked").val() == 'opcion-03') {
                      $('.pago-paypal').removeClass('hidden');
                      }*/

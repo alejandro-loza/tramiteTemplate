@@ -9,10 +9,8 @@ tramite = {
     actaResponse: '',
     init: function () {
         var controller = this;
-        //console.log(' -------> ' + window.location.toString().split('?')[1] );
-
-        //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 2, "expires":"Mon, 14 Sep 2015 13:20:00 UTC;"}, "status": 201}');
-        //localStorage.setItem(this.ls, JSON.stringify({"json":{"token": "333X2A", "step": 0, "folio": "", "expires":"Mon Sep 14 2015 16:10:00 GMT-0500"}, "status": 201}));
+        
+        //localStorage.setItem(this.ls, JSON.stringify({"json":{"token": "333X2A", "step": 0, "folio": "", "expires":"Mon Sep 15 2015 16:10:00 GMT-0500"}, "status": 201}));
         console.log('session search ' + JSON.stringify(window.localStorage) );
         if( localStorage[this.ls] != null ) {
             console.log('session exists');            
@@ -45,13 +43,11 @@ tramite = {
                 
 
             } else {
-                console.log('expired');
-                //delete window.localStorage[this.ls]
+                delete window.localStorage[this.ls]
                 this.step = 0;
             }           
         } else { 
-            console.log('what');
-            //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 2, "expires":"Mon, 14 Sep 2015 13:20:00 UTC;"}, "status": 201}');
+            console.log('what');            
             this.step = 0; 
         }
         this.current_step();        
@@ -70,8 +66,7 @@ tramite = {
         //console.log('ENTER ------->');
         //$('section').fadeOut('500', function() {
         $('section').addClass('hidden');
-        $('.' + controller.steps[current_step]).removeClass('hidden');
-        //console.log('controller.steps[current_step] --> ' + controller.steps[current_step]);
+        $('.' + controller.steps[current_step]).removeClass('hidden');        
         //});
         if (controller.steps[current_step] == 'confirmation') {
             setTimeout(function () {
@@ -89,13 +84,11 @@ tramite = {
 
         var controller = this;
         var curp = document.getElementById("CURP").value;
-        //alert (curp);
 
         var shaObj = new jsSHA("SHA-1", "TEXT");
         shaObj.update("PRESIDENCIA"+curp);
         var hash = shaObj.getHash("HEX");
-        //alert (hash);
-        
+
         $.ajax({
             url: this.url + this.wsCURP,
             type: 'POST',            
@@ -104,18 +97,13 @@ tramite = {
             crossOrigin: true,
             crossDomain: true,
             data: JSON.stringify({
-                "dependencia": "PRESIDENCIA",
-                //"curp": "HUTR840605HDFRRB00",
-                "curp": curp,
-                //hash": "b09ffbf37a4a284c9fdff4f2c5532f22ae454486",                           
+                "dependencia": "PRESIDENCIA",                
+                "curp": curp,                
                 "hash": hash,
                 "isImg": 0
             }),
             success: function (response) {
-                //steps: selected step + 1 
                 controller.actaResponse = response.return.nacimientos[0];
-                //alert("Respuesta: " + actaResponse);
-
             },
             error: function (e) {
                 alert("Error: " + e);
@@ -138,8 +126,6 @@ tramite = {
             acta.text(camposActa[x] + ':' + controller.actaResponse[camposActa[x]])
             acta.appendTo('.detalle-acta');
         }
-
-
     },
     selectFolio: function (element) {
         $(element).css({'background-color': '#999'})
@@ -167,7 +153,6 @@ tramite = {
         var folio = JSON.parse(window.localStorage[controller.ls]).json.folio;
         $('.download-loading').removeClass('hidden');
 
-        
     	$.ajax({
             url: this.url + this.wsPDF,
             type: 'POST',            
@@ -191,8 +176,5 @@ tramite = {
                 alert("Error: " + e);
             }
         });
-
-
-
     },   
 }
