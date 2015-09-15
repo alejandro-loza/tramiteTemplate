@@ -314,80 +314,26 @@
                         </div>
                         <!-- div class="pago-paypal"></div -->
                     </section>
-                    <section class="confirmation hidden">
-                        <div class="col-md-6 col-md-offset-4">
-                            <div class="loader" style="text-align: center; margin-top: 20%;">
-                                <img src="images/oval.svg" width="50" alt="">
-                            </div>
-                            <div>
-                                <h3>Pago realizado exitosamente!</h3>
-                                <p><button type="button" class="btn btn-primary download-btn"><i class="glyphicon glyphicon-download-alt"></i>Descargar Acta</button>
-                                <button type="button" class="btn btn-primary recibo-btn"><i class="glyphicon glyphicon-list-alt"></i>Generar Recibo de Pago</button></p>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </section>
+                
             <section class="excepction hidden">
                 <div class="col-md-4 col-md-offset-4 vertica-buffer">
                     <h1>Epic Fail</h1>
                 </div>
             </section>
-            <section class="checkout hidden">
-                <div class="tipo-pago col-md-4 col-md-offset-4">
-                    <div class="radio">
-                        <label class="col-md-12 clearfix">
-                            <input type="radio" name="radio-01" value="opcion-01" checked="checked"> Tarjeta de crédito
-                        </label>
-                        <br/>
-                        <label class="col-md-12 clearfix">
-                            <input type="radio" name="radio-01" value="opcion-02"> Pago en banco
-                        </label>
-                        <!-- label>
-                          <input type="radio" name="radio-01" value="opcion-03"> Paypal
-                      </label -->
-                    </div>
-                    <br/>
-                    <button type="button" class="btn btn-success select-payment" style="margin-top: 24px;">Siguiente</button>
-                </div>
-                <div class="pago-tarjeta col-md-4 col-md-offset-4 hidden">
-                    <div class="form-group">
-                        <label for="nombre-tarjeta">Nombre en la tarjeta</label>
-                        <input type="text" name="nombre-tarjeta" id="nombre-tarjeta" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre-tarjeta">Número en la tarjeta</label>
-                        <input type="text" name="nombre-tarjeta" id="nombre-tarjeta" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="ccv">CCV</label>
-                        <input type="text" name="ccv" id="ccv" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="fecha">Fecha de vencimiento</label>
-                        <input type="text" name="fecha" id="fecha" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-success next_step pull-right">Proceder a pagar</button>
-                    </div>
-                </div>
-                <div class="pago-banco col-md-4 col-md-offset-4 hidden">
-                    <h4 class="linea-captura"><strong>7fds7fd7afa8seas%Adar112445</strong></h4>
-                </div>
-                <!-- div class="pago-paypal"></div -->
-            </section>
+            
             <section class="confirmation hidden">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-6 col-md-offset-3">
                     <div class="loader  hidden" style="text-align: center; margin-top: 20%;">
                         <img src="images/oval.svg" width="50" alt="">
                     </div>
                     <div class="exito">
                         <h3>Pago realizado exitosamente!</h3>
-                        <p><button type="button" class="btn btn-primary download-btn"><i class="glyphicon glyphicon-download-alt"></i>Descargar Acta</button>
-                            <button type="button" class="btn btn-primary recibo-btn"><i class="glyphicon glyphicon-list-alt"></i>Generar Recibo de Pago</button></p>
+                        <button type="button" class="btn btn-primary pull-right recibo-btn"><i class="glyphicon glyphicon-list-alt"></i>Generar Recibo de Pago</button>                                                
+                        <button type="button" class="btn btn-primary pull-right download-btn" style="margin-right: 18px;"><i class="glyphicon glyphicon-download-alt"></i>Descargar Acta</button>
                         <div class="loader download-loading pull-right hidden" style="margin-top: 8px; margin-right: 14px;">
                             <img src="images/oval.svg" width="30" alt="" />
                         </div>
+                        
                     </div>
                 </div>
             </section>

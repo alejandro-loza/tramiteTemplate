@@ -106,7 +106,7 @@ tramite = {
             }),
             success: function (response) {
                 //steps: selected step + 1
-                actaResponse = response.return.nacimientos[0];
+                controller.actaResponse = response.return.nacimientos[0];
                 //alert("Respuesta: " + actaResponse);
 
             },
@@ -119,7 +119,7 @@ tramite = {
 
         setTimeout(function () {
             $('#folios .loader').hide('fast', function () {
-                controller.addActa(actaResponse);
+                controller.addActa(controller.actaResponse);
             });
         }, 1000);
     },
