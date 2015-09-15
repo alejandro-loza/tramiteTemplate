@@ -12,9 +12,10 @@ tramite = {
         //console.log(' -------> ' + window.location.toString().split('?')[1] );
 
         //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 2, "expires":"Mon, 14 Sep 2015 13:20:00 UTC;"}, "status": 201}');
-        //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 0, "expires":"Mon Sep 14 2015 16:10:00 GMT-0500"}, "status": 201}');
-        if( localStorage.getItem(this.ls) != null ) {
-            //console.log('session exists');            
+        //localStorage.setItem(this.ls, JSON.stringify({"json":{"token": "333X2A", "step": 0, "folio": "", "expires":"Mon Sep 14 2015 16:10:00 GMT-0500"}, "status": 201}));
+        console.log('session search ' + JSON.stringify(window.localStorage) );
+        if( localStorage[this.ls] != null ) {
+            console.log('session exists');            
             var key = JSON.parse(window.localStorage[this.ls]);
             var token = key.json.token;     
             var expires = new Date(key.json.expires);
@@ -41,7 +42,7 @@ tramite = {
                 });*/
 
                 console.log(' step ---> ' + this.step);
-                this.current_step();
+                
 
             } else {
                 console.log('expired');
@@ -49,10 +50,11 @@ tramite = {
                 this.step = 0;
             }           
         } else { 
+            console.log('what');
             //localStorage.setItem(this.ls, '{"json":{"token": "333X2A", "step": 2, "expires":"Mon, 14 Sep 2015 13:20:00 UTC;"}, "status": 201}');
             this.step = 0; 
         }
-        
+        this.current_step();        
     },
     current_step: function () {
         var controller = this;
@@ -111,7 +113,7 @@ tramite = {
             }),
             success: function (response) {
                 //steps: selected step + 1 
-                actaResponse = response.return.nacimientos[0];
+                controller.actaResponse = response.return.nacimientos[0];
                 //alert("Respuesta: " + actaResponse);
 
             },
@@ -124,16 +126,16 @@ tramite = {
 
         setTimeout(function () {
             $('#folios .loader').hide('fast', function () {
-                controller.addActa(actaResponse);
+                controller.addActa(controller.actaResponse);
             });
         }, 1000);
     },
     addActa: function (actaResponse) {
-
+        var controller = this;
         var camposActa = ['folio', 'oficialia', 'foja', 'libro', 'noActa', 'fechaNacimiento', 'curp', 'estadoNacNombre', 'nombre', 'primerApellido', 'segundoApellido', 'sexo', 'vivoMuerto'];
         for (x = 0; x < camposActa.length; x++) {
             var acta = $("<p style='font-size: 8pt; text-align: center;'/>")
-            acta.text(camposActa[x] + ':' + actaResponse[camposActa[x]])
+            acta.text(camposActa[x] + ':' + controller.actaResponse[camposActa[x]])
             acta.appendTo('.detalle-acta');
         }
 
@@ -161,6 +163,11 @@ tramite = {
     },
     download: function () {
     	var pdf;
+        var controller = this;
+        var folio = JSON.parse(window.localStorage[controller.ls]).json.folio;
+        $('.download-loading').removeClass('hidden');
+
+        
     	$.ajax({
             url: this.url + this.wsPDF,
             type: 'POST',            
@@ -169,13 +176,15 @@ tramite = {
             crossOrigin: true,
             crossDomain: true,
             data: JSON.stringify({               	
-					"arg0": actaResponse.folio				
+					"arg0": folio
             }),
             success: function (response) {
                 pdf = response.return.Reporte;
                 setTimeout(function(){
                 	var url = 'data:aplication/pdf;base64,' + pdf ;
                 	window.open(url);
+                    console.log('start download');
+                    $('.download-loading').addClass('hidden');
                 },3000);
             },
             error: function (e) {
