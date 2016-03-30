@@ -1,347 +1,256 @@
 <!DOCTYPE html>
 <html class="js svg wf-opensans-i3-active wf-opensans-i4-active wf-opensans-n4-active wf-opensans-n3-active wf-opensans-n6-active wf-opensans-n7-active wf-active" lang="es">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>gob.mx - Trámites</title>
-        <meta name="description" content>
-        <meta name="viewport" content="width=device-width">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
-        <link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-        <script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-        <script type="text/javascript" src="https://framework-gb-ssl.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
-        <!-- script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script -->
-        <script type="text/javascript" src="js/sha1.js"></script>
-        <script src="js/tramite.js"></script>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>gob.mx - Trámites</title>
+    <meta name="description" content>
+    <meta name="viewport" content="width=device-width">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,700" rel="stylesheet" type="text/css" >
+    <link href="http://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+    <script src="http://framework-gb.cdn.gob.mx/gobmx.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="https://framework-gb-ssl.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+    <!-- script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script -->
+    <script type="text/javascript" src="js/sha1.js"></script>
+    <script src="js/tramite.js"></script>
+</head>
 
-    <body>
-        <main role="main">
-            <div class="container">
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="icon icon-home"></i></a></li>
-                    <li><a href="#">Trámites</a></li>
-                    <li><a href="#">Acta de nacimiento</a></li>
-                </ol>
-                <div class="row tramite-content" style="min-height: 400px;">
-                    <div class="col-md-12">
-                        <h2>Acta de nacimiento</h2>
-                        <hr class="red" />
-                        <!-- section>
-                                <ul class="wizard-steps">
-                                        <li class="completed">
-                                                <h5>Paso 1</h5>
-                                                <span>Buscar</span>
-                                        </li>
-                                        <li>
-                                                <h5>Paso 2</h5>
-                                                <span>Seleccionar folio</span>
-                                        </li>
-                                </ul>
-                        </section -->
+<body>
+    <main role="main">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="icon icon-home"></i></a></li>
+                <li><a href="#">Trámites</a></li>
+                <li><a href="#">Acta de nacimiento</a></li>
+            </ol>
+            <div class="row tramite-content" style="min-height: 400px;">
+                <div class="col-md-12">
+                    <h2>Proyecto X</h2>
+                    <hr class="red" />
+
+                </div>
+                <section class="buscar">
+                    <div class="col-md-5">
+                        <div class="login">
+                            <h3>Login</h3>
+                            <form method="post" action="index.html">
+                                <div class="form-group">
+                                    <label for="cadena-digital">Usuario</label>
+                                    <input type="text" name="user" value="" class="form-control" placeholder="Username or Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cadena-digital">Password</label>
+                                    <input type="password" name="user" value="" class="form-control" placeholder="Password">
+                                </div>
+
+                                <p class="remember_me">
+                                  <label>
+                                    <input type="checkbox" name="remember_me" id="remember_me">
+                                    Recordarme
+                                </label>
+                            </p>
+                            
+                            <div class="form-group clearfix">
+                               <button type="button" class="btn btn-default pull-right search-btn next_step"></i> Login</button>
+                            </div>
+                        </form>
                     </div>
-                    <section class="buscar">
-                        <div class="col-md-5">
-                            <h3>Consulta</h3>
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#tab-01">CURP</a></li>
-                                <li><a data-toggle="tab" href="#tab-02">Datos personales</a></li>
-                                <li><a data-toggle="tab" href="#tab-03">Cadena Digital</a></li>
 
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane active clearfix" id="tab-01">
-                                    <div class="form-group">
-                                        <label for="rfc">CURP</label>
-                                        <input name="CURP" id="CURP" class="form-control" />
-                                    </div>
+                    <div class="login-help">
+                      <p>¿Olvidaste tu password? <a href="index.html">Solicita uno Nuevo</a>.</p>
+                  </div>
+              </div>
+          </div>
+          <br/>
+      </section>
+      <section class="preview hidden">
+        <h3>Vista Previa</h3>
+        <div id="folios" class="col-md-7 hidden">
+            <div class="loader" style="text-align: center; margin-top: 20%;">
+                <img src="images/oval.svg" width="50" alt="" />
+            </div>
+            <div id="acta" class="panel panel-default" style="width: 500px; margin: 0 auto;">
+                <div class="panel-heading">
+                    <table border="0" style="width: 100%;">
+                        <tr>
+                            <td>
+                                <img src="images/logito.png" width="150" height="50">
+                            </td>
+                            <td align="center">
+                                <h6>ESTADOS UNIDOS MEXICANOS</h6>
+                                <h6>Acta de Nacimiento</h6>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="detalle-acta" style="font-size: 8pt; text-align: center;">
+                    <b>REGISTRO CIVIL</b>
+                    <br/><br/>
+                </div>
+            </div>
+            <br/>
+        </div>
+        <div class="col-md-4">
+            <h5>¿Todos los datos son correctos?</h5>
+            <button type="button" class="btn btn-success next_step">Siguiente</button>
+            <button type="button" class="btn btn-danger">Datos no coinciden</button>
+        </div>
+        <div class="col-md-8 acta">
+        </div>
+    </section>
+    <section class="select-folio hidden">
+        <h3>Seleccionar Folio</h3>
 
-                                </div>
-                                <div class="tab-pane clearfix" id="tab-02">
-                                    <div class="form-group">
-                                        <label for="nombre">Nombre</label>
-                                        <input name="nombre" id="nombre" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="apellido-p">Primer Apellido</label>
-                                        <input name="apellido-p" id="apellido-p" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="apellido-s">Segundo Apellido</label>
-                                        <input name="apellido-s" id="apellido-s" class="form-control" />
-                                    </div>
+        <table border="0" style="width: 100%;">
+            <tr>
+                <td>
+                    <table id="tabla_folios" class="table table-striped" style="width: 600px;" >
+                        <tr>
+                            <th>Folio</th>
+                            <th>Nombre Completo</th>
+                            <th>Nombre Padre</th>
+                            <th>Nombre Madre</th>
+                        </tr>
+                        <tr onclick="mostrar('Alejandro Hernández Loza');">
+                            <td>123456</td>
+                            <td>Alejandro Hernández Loza</td>
+                            <td>Gabriel Hernández Amador</td>
+                            <td>Imelda Loza Vera</td>
+                        </tr>
+                        <tr onclick="mostrar('Abraham Saldívar Sánchez');">
+                            <td>654321</td>
+                            <td>Abraham Saldívar Sánchez</td>
+                            <td>Moises Saldívar Herrrera</td>
+                            <td>Carmen Sánchez Flores</td>
+                        </tr>
+                        <tr onclick="mostrar('Jhon Doe');">
+                            <td>987543</td>
+                            <td>Jhon Doe</td>
+                            <td>Chris Doe</td>
+                            <td>Margarita Maza de Doe</td>
+                        </tr>
+                    </table>
+                </td>
 
-                                    <div class="form-group datepicker-group">
-                                        <label class="control-label" for="calendarYear">Calendario:</label>
-                                        <input class="form-control" id="calendarYear" type="text">
-                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="sexo">Sexo</label>
-                                        <div>
-                                            <select class="form-control select small" id="sexo" name="sexo">
-                                                <option value="" selected="selected"></option>
-                                                <option value="Aguascalientes">Femenino</option>
-                                                <option value="Aguascalientes">Masculino</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <script>
-                                        $(function () {
-                                            $('#calendarYear').datepicker({changeYear: true});
-                                        });
-                                    </script>
-
-                                    <div class="form-group">
-                                        <label for="entidad-federativa">Entidad Federativa</label>
-                                        <div>
-                                            <select class="form-control element select medium" id="element_7" name="select_ef">
-                                                <option value="" selected="selected"></option>
-                                                <option value="Aguascalientes">Aguascalientes</option>
-                                                <option value="Baja California">Baja California</option>
-                                                <option value="Baja California Sur">Baja California Sur</option>
-                                                <option value="Campeche">Campeche</option>
-                                                <option value="Chiapas">Chiapas</option>
-                                                <option value="Chihuahua">Chihuahua</option>
-                                                <option value="Coahuila">Coahuila</option>
-                                                <option value="Colima">Colima</option>
-                                                <option value="Distrito Federal">Distrito Federal</option>
-                                                <option value="Durango">Durango</option>
-                                                <option value="Estado de México">Estado de México</option>
-                                                <option value="Guanajuato">Guanajuato</option>
-                                                <option value="Guerrero">Guerrero</option>
-                                                <option value="Hidalgo">Hidalgo</option>
-                                                <option value="Jalisco">Jalisco</option>
-                                                <option value="Michoacán">Michoacán</option>
-                                                <option value="Morelos">Morelos</option>
-                                                <option value="Nayarit">Nayarit</option>
-                                                <option value="Nuevo León">Nuevo León</option>
-                                                <option value="Oaxaca">Oaxaca</option>
-                                                <option value="Puebla">Puebla</option>
-                                                <option value="Querétaro">Querétaro</option>
-                                                <option value="Quintana Roo">Quintana Roo</option>
-                                                <option value="San Luis Potosí">San Luis Potosí</option>
-                                                <option value="Sinaloa">Sinaloa</option>
-                                                <option value="Sonora">Sonora</option>
-                                                <option value="Tabasco">Tabasco</option>
-                                                <option value="Tamaulipas">Tamaulipas</option>
-                                                <option value="Tlaxcala">Tlaxcala</option>
-                                                <option value="Veracruz">Veracruz</option>
-                                                <option value="Yucatán">Yucatán</option>
-                                                <option value="Zacatecas">Zacatecas</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="tab-pane clearfix" id="tab-03">
-                                    <div class="form-group">
-                                        <label for="cadena-digital">Cadena Digital</label>
-                                        <input name="cadena-digital" id="rfc" class="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class="form-group clearfix">
-                                    <div class="g-recaptcha pull-right" data-sitekey="6LfulAwTAAAAALtjRGZxBinREdNMITvETTXByiyh"></div>
-                                </div>
-
-                                <div class="form-group clearfix">
-                                    <button type="button" class="btn btn-default pull-right search-btn next_step"><i class="icon icon-search"></i> Buscar</button>
-                                </div>
-                            </div>
+                <td>
+                    <div id="acta" class="panel panel-default" style="width: 500px; margin: 0 auto; display: none;">
+                        <div class="panel-heading">
+                            <table border="0" style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        <img src="images/logito.png" width="150" height="50">
+                                    </td>
+                                    <td align="center">
+                                        <h6>ESTADOS UNIDOS MEXICANOS</h6>
+                                        <h6>Acta de Nacimiento</h6>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                        <br/>
-                    </section>
-                    <section class="preview hidden">
-                        <h3>Vista Previa</h3>
-                        <div id="folios" class="col-md-7 hidden">
-                            <div class="loader" style="text-align: center; margin-top: 20%;">
-                                <img src="images/oval.svg" width="50" alt="" />
-                            </div>
-                            <div id="acta" class="panel panel-default" style="width: 500px; margin: 0 auto;">
-                                <div class="panel-heading">
-                                    <table border="0" style="width: 100%;">
-                                        <tr>
-                                            <td>
-                                                <img src="images/logito.png" width="150" height="50">
-                                            </td>
-                                            <td align="center">
-                                                <h6>ESTADOS UNIDOS MEXICANOS</h6>
-                                                <h6>Acta de Nacimiento</h6>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="detalle-acta" style="font-size: 8pt; text-align: center;">
-                                    <b>REGISTRO CIVIL</b>
-                                    <br/><br/>
-                                </div>
-                            </div>
+                        <div style="font-size: 8pt; text-align: center;">
+                            <b>REGISTRO CIVIL</b>
                             <br/>
+                            Entidad Federativa: Puebla
+                            <br/>
+                            Clave de registro e Identidad Personal:123456789
+                            <br/>
+                            Oficialia: Izucar de Matamoros, Libro 1, Municipio/Delegación:81
+                            <br/>
+                            Fecha de Registro: 20 de Diciembre de 1979
+                            <br/>
+                            Datos Personales                                       
+                            <p id="nombre_folio" style="font-size: 9pt; text-align: center; font-weight: bold"></p>                                        
+                            Nombre(s)   A.Paterno   A.Materno
+                            <br/>
+                            Registrado:Vivo
+                            <br/>
+                            Sexo: Masculino
+                            <br/>
+                            <b>Fecha de nacimiento: 16/09/1979</b>
                         </div>
-                        <div class="col-md-4">
-                            <h5>¿Todos los datos son correctos?</h5>
-                            <button type="button" class="btn btn-success next_step">Siguiente</button>
-                            <button type="button" class="btn btn-danger">Datos no coinciden</button>
-                        </div>
-                        <div class="col-md-8 acta">
-                        </div>
-                    </section>
-                    <section class="select-folio hidden">
-                        <h3>Seleccionar Folio</h3>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </section>
+    <section class="mistake hidden">
 
-                        <table border="0" style="width: 100%;">
-                            <tr>
-                                <td>
-                                    <table id="tabla_folios" class="table table-striped" style="width: 600px;" >
-                                        <tr>
-                                            <th>Folio</th>
-                                            <th>Nombre Completo</th>
-                                            <th>Nombre Padre</th>
-                                            <th>Nombre Madre</th>
-                                        </tr>
-                                        <tr onclick="mostrar('Alejandro Hernández Loza');">
-                                            <td>123456</td>
-                                            <td>Alejandro Hernández Loza</td>
-                                            <td>Gabriel Hernández Amador</td>
-                                            <td>Imelda Loza Vera</td>
-                                        </tr>
-                                        <tr onclick="mostrar('Abraham Saldívar Sánchez');">
-                                            <td>654321</td>
-                                            <td>Abraham Saldívar Sánchez</td>
-                                            <td>Moises Saldívar Herrrera</td>
-                                            <td>Carmen Sánchez Flores</td>
-                                        </tr>
-                                        <tr onclick="mostrar('Jhon Doe');">
-                                            <td>987543</td>
-                                            <td>Jhon Doe</td>
-                                            <td>Chris Doe</td>
-                                            <td>Margarita Maza de Doe</td>
-                                        </tr>
-                                    </table>
-                                </td>
-
-                                <td>
-                                    <div id="acta" class="panel panel-default" style="width: 500px; margin: 0 auto; display: none;">
-                                        <div class="panel-heading">
-                                            <table border="0" style="width: 100%;">
-                                                <tr>
-                                                    <td>
-                                                        <img src="images/logito.png" width="150" height="50">
-                                                    </td>
-                                                    <td align="center">
-                                                        <h6>ESTADOS UNIDOS MEXICANOS</h6>
-                                                        <h6>Acta de Nacimiento</h6>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div style="font-size: 8pt; text-align: center;">
-                                            <b>REGISTRO CIVIL</b>
-                                            <br/>
-                                            Entidad Federativa: Puebla
-                                            <br/>
-                                            Clave de registro e Identidad Personal:123456789
-                                            <br/>
-                                            Oficialia: Izucar de Matamoros, Libro 1, Municipio/Delegación:81
-                                            <br/>
-                                            Fecha de Registro: 20 de Diciembre de 1979
-                                            <br/>
-                                            Datos Personales                                       
-                                            <p id="nombre_folio" style="font-size: 9pt; text-align: center; font-weight: bold"></p>                                        
-                                            Nombre(s)   A.Paterno   A.Materno
-                                            <br/>
-                                            Registrado:Vivo
-                                            <br/>
-                                            Sexo: Masculino
-                                            <br/>
-                                            <b>Fecha de nacimiento: 16/09/1979</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </section>
-                    <section class="mistake hidden">
-
-                    </section>
-                    <section class="checkout hidden">
-                        <div class="tipo-pago col-md-4 col-md-offset-4">
-                            <div class="radio">
-                                <label class="col-md-12 clearfix">
-                                    <input type="radio" name="radio-01" value="opcion-01" checked="checked"> Tarjeta de crédito
-                                </label>
-                                <br/>
-                                <label class="col-md-12 clearfix">
-                                    <input type="radio" name="radio-01" value="opcion-02"> Pago en banco
-                                </label>
+    </section>
+    <section class="checkout hidden">
+        <div class="tipo-pago col-md-4 col-md-offset-4">
+            <div class="radio">
+                <label class="col-md-12 clearfix">
+                    <input type="radio" name="radio-01" value="opcion-01" checked="checked"> Tarjeta de crédito
+                </label>
+                <br/>
+                <label class="col-md-12 clearfix">
+                    <input type="radio" name="radio-01" value="opcion-02"> Pago en banco
+                </label>
                                 <!-- label>
                                   <input type="radio" name="radio-01" value="opcion-03"> Paypal
                               </label -->
-                            </div>
-                            <br/>
-                            <button type="button" class="btn btn-success select-payment" style="margin-top: 24px;">Siguiente</button>
-                        </div>
-                        
-                        <div class="pago-banco col-md-4 col-md-offset-4 hidden">
-                            <h4 class="linea-captura"><strong>7fds7fd7afa8seas%Adar112445</strong></h4>
-                        </div>
-                        <!-- div class="pago-paypal"></div -->
-                    </section>
+                          </div>
+                          <br/>
+                          <button type="button" class="btn btn-success select-payment" style="margin-top: 24px;">Siguiente</button>
+                      </div>
+
+                      <div class="pago-banco col-md-4 col-md-offset-4 hidden">
+                        <h4 class="linea-captura"><strong>7fds7fd7afa8seas%Adar112445</strong></h4>
+                    </div>
+                    <!-- div class="pago-paypal"></div -->
+                </section>
                 
-            <section class="excepction hidden">
-                <div class="col-md-4 col-md-offset-4 vertica-buffer">
-                    <h1>Epic Fail</h1>
-                </div>
-            </section>
-            
-            <section class="confirmation hidden">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="loader  hidden" style="text-align: center; margin-top: 20%;">
-                        <img src="images/oval.svg" width="50" alt="">
+                <section class="excepction hidden">
+                    <div class="col-md-4 col-md-offset-4 vertica-buffer">
+                        <h1>Epic Fail</h1>
                     </div>
-                    <div class="exito">
-                        <h3>Pago realizado exitosamente!</h3>
-                        <button type="button" class="btn btn-primary pull-right recibo-btn"><i class="glyphicon glyphicon-list-alt"></i>Generar Recibo de Pago</button>                                                
-                        <button type="button" class="btn btn-primary pull-right download-btn" style="margin-right: 18px;"><i class="glyphicon glyphicon-download-alt"></i>Descargar Acta</button>
-                        <div class="loader download-loading pull-right hidden" style="margin-top: 8px; margin-right: 14px;">
-                            <img src="images/oval.svg" width="30" alt="" />
+                </section>
+
+                <section class="confirmation hidden">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="loader  hidden" style="text-align: center; margin-top: 20%;">
+                            <img src="images/oval.svg" width="50" alt="">
                         </div>
-                        
+                        <div class="exito">
+                            <h3>Pago realizado exitosamente!</h3>
+                            <button type="button" class="btn btn-primary pull-right recibo-btn"><i class="glyphicon glyphicon-list-alt"></i>Generar Recibo de Pago</button>                                                
+                            <button type="button" class="btn btn-primary pull-right download-btn" style="margin-right: 18px;"><i class="glyphicon glyphicon-download-alt"></i>Descargar Acta</button>
+                            <div class="loader download-loading pull-right hidden" style="margin-top: 8px; margin-right: 14px;">
+                                <img src="images/oval.svg" width="30" alt="" />
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
-    </div>
-</main>
-<script>
-    $(function () {
+    </main>
+    <script>
+        $(function () {
 
-                var shaObj = new jsSHA("SHA-1", "TEXT");
-                shaObj.update("PRESIDENCIAHUTR840605HDFRRB00");
-                var hash = shaObj.getHash("HEX");
+            var shaObj = new jsSHA("SHA-1", "TEXT");
+            shaObj.update("PRESIDENCIAHUTR840605HDFRRB00");
+            var hash = shaObj.getHash("HEX");
 
-                console.log('hex sha1 --> ' + hash);
+            console.log('hex sha1 --> ' + hash);
 
-        $('.search-btn').on('click', function () {
-            tramite.search();
-        });
-        $('.download-btn').on('click', function () {
-            tramite.download();
-        });
-        $('.recibo-btn').on('click', function () {
-            window.open('recibo_pago.html','_blank');
-        });
-        $('.select-payment').on('click', function () {
-            $('.tipo-pago').addClass('hidden');
-            console.log(' radio? ' + $("input[name=radio-01]:checked").val());
-            if ($("input[name=radio-01]:checked").val() == 'opcion-01') {
+            $('.search-btn').on('click', function () {
+                tramite.search();
+            });
+            $('.download-btn').on('click', function () {
+                tramite.download();
+            });
+            $('.recibo-btn').on('click', function () {
+                window.open('recibo_pago.html','_blank');
+            });
+            $('.select-payment').on('click', function () {
+                $('.tipo-pago').addClass('hidden');
+                console.log(' radio? ' + $("input[name=radio-01]:checked").val());
+                if ($("input[name=radio-01]:checked").val() == 'opcion-01') {
 
                 //var item = JSON.parse(localStorage[tramite.ls]);
                 //var updated = { "json": { "token": item.json.token, "step": item.json.step, "folio": tramite.actaResponse.folio, "expires": item.json.expires }, "status": 201 }
@@ -357,17 +266,17 @@
             }
             /*else if ( $("input[name=radio-01]:checked").val() == 'opcion-03') {
              $('.pago-paypal').removeClass('hidden');
-             }*/
-        });
-        $('.next_step').on('click', function () {
-            tramite.next_step();
-        });
-    });
+         }*/
+     });
+$('.next_step').on('click', function () {
+    tramite.next_step();
+});
+});
 
-    function mostrar(nombre) {
-        doc = document.getElementById("acta");
-        doc.style.display = "block";
-        document.getElementById("nombre_folio").innerText = nombre;
+function mostrar(nombre) {
+    doc = document.getElementById("acta");
+    doc.style.display = "block";
+    document.getElementById("nombre_folio").innerText = nombre;
         //alert(document.getElementById("nombre").innerHTML);
         //alert(nombre);
     }
