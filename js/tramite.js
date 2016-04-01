@@ -30,17 +30,8 @@ tramite = {
                     this.step = 0;
                 }
 
-                /* TODO TOKEN AJAX
-                $.ajax({
-                    url: '/authToken',
-                    dataType: '',
-                    success: function() {
-
-                    }
-                });*/
-
                 console.log(' step ---> ' + this.step);
-                
+
 
             } else {
                 delete window.localStorage[this.ls]
@@ -77,17 +68,27 @@ tramite = {
         $('section').addClass('hidden');
         $(this.steps[this.step - 1]).removeClass('hidden');
     },
+	startTimeOut: function() {
+		setTimeout(function() {
+			$("#errorLog").fadeOut();
+		}, 3000);
+	},
     search: function () {
-
         var controller = this;
-//TODO ws de logeo
-        $('#folios').removeClass('hidden').show('slow');
+        var user = document.getElementById("user").value;
+        var password = document.getElementById("password").value;
+        if(user === password){
+            //TODO ws de logeo
+            this.next_step();
+        }
+        else{
+            errorFlagMessage("password incorrecto");
+			controller.startTimeOut(controller.masterTimer);
+        }
 
-        setTimeout(function () {
-            $('#folios .loader').hide('fast', function () {
-                controller.addActa(controller.actaResponse);
-            });
-        }, 1000);
+			function errorFlagMessage(message) {
+				$("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
+			}
     },
-   
+
 }
