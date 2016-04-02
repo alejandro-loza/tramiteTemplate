@@ -29,7 +29,7 @@
             </ol>
             <div class="row tramite-content" >
                 <div class="col-md-12">
-                    <h2>Proyecto X</h2>
+                    <h2>Trasabilidad</h2>
                     <hr class="red" />
                 </div>
                 <section class="buscar">
@@ -68,45 +68,113 @@
       <section class="preview hidden">
         <div class="col-md-5">
             <div class="login">
-                <h3>Formulario</h3>
+                <h3>Control de Estatus Interoperabilidad</h3>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab-01">CURP</a></li>
-                    <li><a data-toggle="tab" href="#tab-02">Claves</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab-01">Envío de Estatus</a></li>
+                    <li><a data-toggle="tab" href="#tab-02">Registro Macro Trámite</a></li>
 
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active clearfix" id="tab-01">
+
                         <div class="form-group">
-                            <label for="rfc">CURP</label>
+                            <label for="rfc"> Macro Trámite </label>
+                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                                <option value="" selected="selected"></option>
+                                <option >Solar fotovoltaica continental</option>
+                                <option >Eoloeléctrica continental</option>
+                                <option >Hidroeléctrica</option>
+                                <option >Geotermoeléctrica continenta</option>
+                                <option >Biotermoeléctrica (combustión directa de residuos forestales)</option>
+                                <option >Biotermoeléctrica (generación de biogás de fuentes estacionarias)</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="rfc"> Fólio de Seguimiénto  </label>
                             <input name="CURP" id="CURP" class="form-control" />
                         </div>
+                        <div class="form-group">
+                            <label for="rfc"> Homoclave </label>
+                            <input name="CURP" id="CURP" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="rfc"> Estatus </label>
+                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                                <option value="" selected="selected"></option>
+                                <option >Recibido</option>
+                                <option >Iniciado</option>
+                                <option >Rechazado</option>
+                                <option >En Proceso</option>
+                                <option >Detenido</option>
+                                <option >Proroga</option>
+                                <option >Pendiente de Pago</option>
+                                <option >Pagado</option>
+                                <option >Cancelado</option>
+                                <option >Prevención</option>
+                                <option >Terminádo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="rfc"> Resolución</label>
+                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                                <option value="" selected="selected"></option>
+                                <option selected="true">Pendiente</option>
+                                <option >Aceptado</option>
+                                <option >Rechazado</option>                                
+                            </select>
+                        </div>
+
+
 
                     </div>
                     <div class="tab-pane clearfix" id="tab-02">
                         <div class="form-group">
-                            <label for="interoperacion">Clave interoperación</label>
-                            <input type="text" name="interoperacion" value="" class="form-control" >
+                            <label for="rfc"> Macro Trámite </label>
+                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                                <option value="" selected="selected"></option>
+                                <option >Solar fotovoltaica continental</option>
+                                <option >Eoloeléctrica continental</option>
+                                <option >Hidroeléctrica</option>
+                                <option >Geotermoeléctrica continenta</option>
+                                <option >Biotermoeléctrica (combustión directa de residuos forestales)</option>
+                                <option >Biotermoeléctrica (generación de biogás de fuentes estacionarias)</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="homoclave">Homoclave</label>
                             <input type="text" name="homoclave" value="" class="form-control" >
                         </div>
                         <div class="form-group">
-                            <label for="claveRegistro">Clave de registro</label>
+                            <label for="claveRegistro">Identificador Trámite Institución</label>
                             <input type="text" name="claveRegistro" value="" class="form-control" >
                         </div>
+                        <div class="form-group">
+                            <label for="rfc">Tipo Persona</label>
+                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                                <option value="" selected="selected"></option>
+                                <option >Física</option>
+                                <option >Moral</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="homoclave">No. Identificación</label>
+                            <input type="text" name="homoclave" value="" class="form-control" >
+                        </div>
+
                     </div>
 
                     <div class="form-group clearfix">
-                       <button type="button" class="btn btn-default pull-right search-btn next_step"></i> Enviar</button>
-                   </div>
-               </div>
-           </div>
+                     <button type="button" class="btn btn-default pull-right search-btn next_step" data-toggle="modal" data-target="#myModal2"></i> Enviar</button>
+                 </div>
+             </div>
+         </div>
 
 
-       </section>
+     </section>
 
-   </div>
+ </div>
 </div>
 
 <!-- Modal -->
@@ -132,6 +200,39 @@
                         <label for="cadena-digital">Confirmar contraseña</label>
                         <input type="password" id="password" name="password" value="" class="form-control" placeholder="Password">
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal2" class="modal width-wide fade" role="dialog">
+    <div class="modal-dialog" >
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Fólio de Seguimiento de Interoperabilidad</h4>
+            </div>
+            <div class="modal-body" >
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="cadena-digital">Folio de Seguimiento:</label>                                               
+                        <strong>aZ143XaBB</strong>
+                    </div>
+                    <div class="form-group col-md-8 emailInput ">
+                        <p></p>                     
+                        <label for="email" class="control-label">Email:</label>
+                        <input type="email" id="email" name="password" value="" class="form-control" placeholder="Email">
+                    </div>
+                        <p></p>                     
+                    </div>
+                   
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
