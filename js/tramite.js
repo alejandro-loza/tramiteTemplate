@@ -6,10 +6,11 @@ tramite = {
     wsPDF: "/ActaNac/RestService/ActaNac/getPDF",
     steps: ['buscar', 'preview', 'checkout', 'confirmation'],
     step: 0,
+	flag : 0,
     actaResponse: '',
     init: function () {
         var controller = this;
-        
+
         //localStorage.setItem(this.ls, JSON.stringify({"json":{"token": "333X2A", "step": 0, "folio": "", "expires":"Mon Sep 15 2015 16:10:00 GMT-0500"}, "status": 201}));
         console.log('session search ' + JSON.stringify(window.localStorage) );
         if( localStorage[this.ls] != null ) {
@@ -77,10 +78,14 @@ tramite = {
         var controller = this;
         var user = document.getElementById("user").value;
         var password = document.getElementById("password").value;
-        if(user === password){
+        if(user === password && controller.flag != 0){
+			console.log("sin confirmar pass")
             //TODO ws de logeo
             this.next_step();
         }
+		else if(user === password && controller.flag === 0){
+		  $('#myModal').modal('show');	
+		}
         else{
             errorFlagMessage("password incorrecto");
 			controller.startTimeOut(controller.masterTimer);
@@ -90,5 +95,27 @@ tramite = {
 				$("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
 			}
     },
+	changePassword: function(){
+        var controller = this;
+        var password = document.getElementById("password").value;
+        var passwordToChange = document.getElementById("passwordChange").value;
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+		if(password !== passwordToChange){
+            errorMessage("Password incorrecto");
+		}
+		else if (newPassword !== confirmPassword){
+            errorMessage("Las nuevas contraseñas no son iguales");
+		}
+		else{
+            document.getElementById("password").value = '';
+			this.flag = 1;
+			$('#myModal').modal('hide');
+		}
+			function errorMessage(message) {
+				$("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
+				controller.startTimeOut(controller.masterTimer);
+			}
+	}
 
 }
