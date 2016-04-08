@@ -95,6 +95,10 @@ tramite = {
 				$("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
 			}
     },
+	evaluateValueInRegex: function(value,regex) {
+     	var exp = new RegExp(/(?=^.{6,}$)((?=.*\d)|(?!=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
+		return  exp.test(value);
+	},
 	changePassword: function(){
         var controller = this;
         var password = document.getElementById("password").value;
@@ -106,6 +110,12 @@ tramite = {
 		}
 		else if (newPassword !== confirmPassword){
             errorMessage("Las nuevas contraseñas no son iguales");
+		}
+		else if (newPassword.length < 6 || newPassword.length > 11 ){
+            errorMessage("Longitud inválida la contraseña debe tener entre 6 a 10 caracteres");
+		}
+		else if (!this.evaluateValueInRegex(newPassword )){
+            errorMessage("Formato invalido");
 		}
 		else{
             document.getElementById("password").value = '';
