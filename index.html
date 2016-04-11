@@ -57,7 +57,6 @@
                         </div>
                     </div>
 
-                    <div id="errorLog" class="pull-left col-sm-12" style="margin-top: 30px; margin-bottom: 20px;"></div>
                     <div class="login-help">
                       <p>¿Olvidaste tu password? <a href="index.html">Solicita uno Nuevo</a>.</p>
                   </div>
@@ -76,20 +75,6 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active clearfix" id="tab-01">
-
-                        <div class="form-group">
-                            <label for="rfc"> Macro Trámite </label>
-                            <select class="form-control element select medium" id="element_7" name="select_ef">
-                                <option value="" selected="selected"></option>
-                                <option >Solar fotovoltaica continental</option>
-                                <option >Eoloeléctrica continental</option>
-                                <option >Hidroeléctrica</option>
-                                <option >Geotermoeléctrica continenta</option>
-                                <option >Biotermoeléctrica (combustión directa de residuos forestales)</option>
-                                <option >Biotermoeléctrica (generación de biogás de fuentes estacionarias)</option>
-
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label for="rfc"> Fólio de Seguimiénto  </label>
                             <input name="CURP" id="CURP" class="form-control" />
@@ -124,6 +109,10 @@
                                 <option >Rechazado</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="nota"> Nota</label>
+                            <input name="nota" id="nota" class="form-control" />
+                        </div>
 
 
 
@@ -140,6 +129,10 @@
                                 <option >Biotermoeléctrica (combustión directa de residuos forestales)</option>
                                 <option >Biotermoeléctrica (generación de biogás de fuentes estacionarias)</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="idMacroTramite">Id MacroTramite</label>
+                            <input type="text" name="homoclave" value="" class="form-control" >
                         </div>
                         <div class="form-group">
                             <label for="homoclave">Homoclave</label>
@@ -166,7 +159,7 @@
                     </div>
 
                     <div class="form-group clearfix">
-                     <button type="button" class="btn btn-default pull-right search-btn next_step" data-toggle="modal" data-target="#myModal2"></i> Enviar</button>
+                     <button type="button" class="btn btn-default pull-right send-macrotramite-btn"></i> Enviar</button>
                  </div>
              </div>
          </div>
@@ -174,6 +167,7 @@
 
      </section>
 
+                    <div id="errorLog" class="pull-left col-sm-12" style="margin-top: 30px; margin-bottom: 20px;"></div>
  </div>
 </div>
 
@@ -260,14 +254,13 @@
         $('.change-btn').on('click', function () {
             tramite.changePassword();
         });
-        $('.recibo-btn').on('click', function () {
-            window.open('recibo_pago.html','_blank');
+        $('.send-macrotramite-btn').on('click', function () {
+            tramite.sendMacrotramite();
         });
         $('.select-payment').on('click', function () {
             $('.tipo-pago').addClass('hidden');
             console.log(' radio? ' + $("input[name=radio-01]:checked").val());
             if ($("input[name=radio-01]:checked").val() == 'opcion-01') {
-
                 //var item = JSON.parse(localStorage[tramite.ls]);
                 //var updated = { "json": { "token": item.json.token, "step": item.json.step, "folio": tramite.actaResponse.folio, "expires": item.json.expires }, "status": 201 }
                 var updated = { "json": { "token": "XXXAB1", "step": "2", "folio": tramite.actaResponse.folio, "expires": "Mon Sep 15 2015 16:10:00 GMT-0500" }, "status": 201 }

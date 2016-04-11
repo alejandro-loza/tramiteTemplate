@@ -6,12 +6,10 @@ tramite = {
     wsPDF: "/ActaNac/RestService/ActaNac/getPDF",
     steps: ['buscar', 'preview', 'checkout', 'confirmation'],
     step: 0,
-	flag : 0,
+	flag : 1,
     actaResponse: '',
     init: function () {
         var controller = this;
-
-        //localStorage.setItem(this.ls, JSON.stringify({"json":{"token": "333X2A", "step": 0, "folio": "", "expires":"Mon Sep 15 2015 16:10:00 GMT-0500"}, "status": 201}));
         console.log('session search ' + JSON.stringify(window.localStorage) );
         if( localStorage[this.ls] != null ) {
             console.log('session exists');            
@@ -19,21 +17,17 @@ tramite = {
             var token = key.json.token;     
             var expires = new Date(key.json.expires);
             this.rightNow = new Date();
-            
             if( expires.getTime() > this.rightNow.getTime() ) {
                 console.log('still alive');
 
                 if( window.location.toString().split('=')[1] == 'success') {
-                    controller.step = 3;                    
+                    controller.step = 3;
                 } else if( window.location.toString().split('=')[1] == 'excepction') {
                     controller.step = 4;
                 } else {
                     this.step = 0;
                 }
-
                 console.log(' step ---> ' + this.step);
-
-
             } else {
                 delete window.localStorage[this.ls]
                 this.step = 0;
@@ -83,6 +77,9 @@ tramite = {
             //TODO ws de logeo
             this.next_step();
         }
+		else if(user === '' || password === '' || user === undefined || password === undefined){
+            errorFlagMessage("Usuario y password requeridos");
+		}
 		else if(user === password && controller.flag === 0){
 		  $('#myModal').modal('show');	
 		}
@@ -126,6 +123,16 @@ tramite = {
 				$("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
 				controller.startTimeOut(controller.masterTimer);
 			}
-	}
+	},
+	sendMacrotramite:function(){
+        var controller = this;
+		if( $('#tab-01').hasClass('active')) {
+			$("#errorLog").html('<span class="alert alert-success alert-complement"><small>' + 'Tramite Creado' + '</small></span>').show();
+			controller.startTimeOut(controller.masterTimer);
+		}
+		else if($('#tab-02').hasClass('active')){
+			$('#myModal2').modal('show');
+		}
+   	}
 
 }
