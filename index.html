@@ -62,24 +62,25 @@
           <br/>
       </section>
       <section class="preview hidden">
-        <div class="col-md-5">
+        <div class="col-md-12">
             <div class="login">
                 <h3>Control de Estatus Interoperabilidad</h3>
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab-01">Envío de Estatus</a></li>
                     <li><a data-toggle="tab" href="#tab-02">Registro Macro Trámite</a></li>
+                    <li><a data-toggle="tab" href="#tab-03">Consultar Estatus</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active clearfix" id="tab-01">
-                        <div class="form-group required">
+                        <div class="form-group col-md-6">
                             <label for="folioSeguimiento"> Fólio de Seguimiénto  </label>
                             <input name="folioSeguimiento" id="folioSeguimiento" class="form-control" />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="homoclave"> Homoclave </label>
                             <input name="homoclave" id="homoclave" class="form-control" />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="status"> Estatus </label>
                             <select class="form-control element select medium" id="estatus" name="select_ef">
                                 <option value="" selected="selected"></option>
@@ -96,7 +97,7 @@
                                 <option >Terminádo</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="resolucion"> Resolución</label>
                             <select class="form-control element select medium" id="resolucion" name="select_ef">
                                 <option value="" selected="selected"></option>
@@ -107,11 +108,14 @@
                         </div>
                         <div class="form-group">
                             <label for="nota"> Nota</label>
-                            <input name="nota" id="nota" class="form-control" />
+							<textarea name="nota" id="nota" class="form-control" ></textarea>
                         </div>
+						<div class="form-group clearfix">
+							 <button type="button" class="btn btn-default pull-right send-macrotramite-btn"></i> Enviar</button>
+						</div>
                     </div>
                     <div class="tab-pane clearfix" id="tab-02">
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="macrotramite"> Macro Trámite </label>
                             <select class="form-control element select medium" id="macrotramite" name="select_ef">
                                 <option value="" selected="selected"></option>
@@ -123,19 +127,19 @@
                                 <option >Biotermoeléctrica (generación de biogás de fuentes estacionarias)</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="idMacroTramite">Id MacroTramite</label>
                             <input type="text" name="idMacrotramite" id="idMacrotramite" value="" class="form-control" >
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="homoclave">Homoclave</label>
                             <input type="text" name="homoclave" id="homoclave" value="" class="form-control" >
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="tramiteInstitución">Identificador Trámite Institución</label>
                             <input type="text" name="tramiteInstitucion" value="" id="tramiteInstitucion" class="form-control" >
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="tipoPersona">Tipo Persona</label>
                             <select class="form-control element select medium" id="tipoPersona" name="select_ef">
                                 <option value="" selected="selected"></option>
@@ -143,14 +147,63 @@
                                 <option >Moral</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                        <label for="noIdentificacion">No. Identificación</label>
+                        <div class="form-group col-md-6" >
+							<label for="noIdentificacion">No. Identificación</label>
                             <input type="text" name="noIdentificacion" id="noIdentificacion" value="" class="form-control" >
                         </div>
+						<div class="form-group clearfix">
+							 <button type="button" class="btn btn-default pull-right send-macrotramite-btn"></i> Enviar</button>
+						</div>
                     </div>
-                    <div class="form-group clearfix">
-                     <button type="button" class="btn btn-default pull-right send-macrotramite-btn"></i> Enviar</button>
-                 </div>
+					<div class="tab-pane clearfix" id="tab-03">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Homoclave</th>
+									<th>Folio de Seguimiento</th>
+									<th>CURP/RFC</th>
+									<th>Fecha</th>
+									<th>Registrado Por</th>
+									<th>Estatus</th>
+									<th>Resolución</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">1</th>
+										<td>SNR-1892</td>
+										<td>xDf980Ws</td>
+										<td>TEEJ940120RA8</td>
+										<td>11/04/2016 17:41:29</td>
+										<td>mcastillo@sat.gob.mx</td>
+										<td>RECIBIDO</td>
+										<td>PENDIENTE<td>
+
+									</tr>
+								<tr>
+									<th scope="row">2</th>
+										<td>SNR-1892</td>
+										<td>xDf980Ws</td>
+										<td>TEEJ940120RA8</td>
+										<td>11/04/2016 17:41:29</td>
+										<td>mcastillo@sat.gob.mx</td>
+										<td>RECIBIDO</td>
+										<td>PENDIENTE<td>
+								</tr>
+								<tr>
+									<th scope="row">3</th>
+										<td>SNR-1892</td>
+										<td>xDf980Ws</td>
+										<td>TEEJ940120RA8</td>
+										<td>11/04/2016 17:41:29</td>
+										<td>mcastillo@sat.gob.mx</td>
+										<td>RECIBIDO</td>
+										<td>PENDIENTE<td>
+								</tr>
+							</tbody>
+						</table>
+                    </div>
              </div>
          </div>
 
