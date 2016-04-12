@@ -4,7 +4,7 @@ tramite = {
     url: "http://10.15.3.32",
     wsCURP: "/ActaNac/RestService/ActaNac/byCURP",
     wsPDF: "/ActaNac/RestService/ActaNac/getPDF",
-    steps: ['buscar', 'preview', 'checkout', 'confirmation'],
+    steps: ['buscar', 'preview'],
     step: 0,
 	flag : 1,
     actaResponse: '',
@@ -31,12 +31,12 @@ tramite = {
             } else {
                 delete window.localStorage[this.ls]
                 this.step = 0;
-            }           
-        } else { 
-            console.log('what');            
-            this.step = 0; 
+            }
+        } else {
+            console.log('what');
+            this.step = 0;
         }
-        this.current_step();        
+        this.current_step();
     },
     current_step: function () {
         var controller = this;
@@ -127,11 +127,30 @@ tramite = {
 	sendMacrotramite:function(){
         var controller = this;
 		if( $('#tab-01').hasClass('active')) {
-			$("#errorLog").html('<span class="alert alert-success alert-complement"><small>' + 'Tramite Creado' + '</small></span>').show();
-			controller.startTimeOut(controller.masterTimer);
+            var folioSeguimiento = document.getElementById("folioSeguimiento") ;
+            var homoclave = document.getElementById("homoclave");
+            var estatus = document.getElementById("estatus")  ;
+            var resolucion = document.getElementById("resolucion");
+            var nota = document.getElementById("nota") ;
+			var formData = [folioSeguimiento, homoclave, estatus, resolucion, nota];
+			var busqueda =formData.find(findMissing );
+			if(formData.find(findMissing )){
+				alert("faltan campos")
+			}else{
+               document.getElementById("folioSeguimiento").value = '';
+               document.getElementById("homoclave").value= '';
+               document.getElementById("estatus").value  = '';
+               document.getElementById("resolucion").value= '';
+               document.getElementById("nota").value = '';
+				$("#errorLog").html('<span class="alert alert-success alert-complement"><small>' + 'Tramite Creado' + '</small></span>').show();
+				controller.startTimeOut(controller.masterTimer);
+			}
 		}
 		else if($('#tab-02').hasClass('active')){
 			$('#myModal2').modal('show');
+		}
+		function findMissing(form) {
+	       return form.value === '';
 		}
    	}
 

@@ -44,19 +44,16 @@
                                 <label for="cadena-digital">Contraseña</label>
                                 <input type="password" id="password" name="password" value="" class="form-control" placeholder="Contraseña" maxlength="10">
                             </div>
-
                             <p class="remember_me">
                               <label>
                                 <input type="checkbox" name="remember_me" id="remember_me">
                                 Recordarme
-                            </label>
+						      </label>
                         </p>
-
                         <div class="form-group clearfix">
                             <button type="button" class="btn btn-default pull-right search-btn " ></i> Aceptar</button>
                         </div>
                     </div>
-
                     <div class="login-help">
                       <p>¿Olvidaste tu password? <a href="index.html">Solicita uno Nuevo</a>.</p>
                   </div>
@@ -71,21 +68,20 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab-01">Envío de Estatus</a></li>
                     <li><a data-toggle="tab" href="#tab-02">Registro Macro Trámite</a></li>
-
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active clearfix" id="tab-01">
-                        <div class="form-group">
-                            <label for="rfc"> Fólio de Seguimiénto  </label>
-                            <input name="CURP" id="CURP" class="form-control" />
+                        <div class="form-group required">
+                            <label for="folioSeguimiento"> Fólio de Seguimiénto  </label>
+                            <input name="folioSeguimiento" id="folioSeguimiento" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label for="rfc"> Homoclave </label>
-                            <input name="CURP" id="CURP" class="form-control" />
+                            <label for="homoclave"> Homoclave </label>
+                            <input name="homoclave" id="homoclave" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label for="rfc"> Estatus </label>
-                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                            <label for="status"> Estatus </label>
+                            <select class="form-control element select medium" id="estatus" name="select_ef">
                                 <option value="" selected="selected"></option>
                                 <option >Recibido</option>
                                 <option >Iniciado</option>
@@ -101,8 +97,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="rfc"> Resolución</label>
-                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                            <label for="resolucion"> Resolución</label>
+                            <select class="form-control element select medium" id="resolucion" name="select_ef">
                                 <option value="" selected="selected"></option>
                                 <option selected="true">Pendiente</option>
                                 <option >Aceptado</option>
@@ -113,14 +109,11 @@
                             <label for="nota"> Nota</label>
                             <input name="nota" id="nota" class="form-control" />
                         </div>
-
-
-
                     </div>
                     <div class="tab-pane clearfix" id="tab-02">
                         <div class="form-group">
-                            <label for="rfc"> Macro Trámite </label>
-                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                            <label for="macrotramite"> Macro Trámite </label>
+                            <select class="form-control element select medium" id="macrotramite" name="select_ef">
                                 <option value="" selected="selected"></option>
                                 <option >Solar fotovoltaica continental</option>
                                 <option >Eoloeléctrica continental</option>
@@ -132,32 +125,29 @@
                         </div>
                         <div class="form-group">
                             <label for="idMacroTramite">Id MacroTramite</label>
-                            <input type="text" name="homoclave" value="" class="form-control" >
+                            <input type="text" name="idMacrotramite" id="idMacrotramite" value="" class="form-control" >
                         </div>
                         <div class="form-group">
                             <label for="homoclave">Homoclave</label>
-                            <input type="text" name="homoclave" value="" class="form-control" >
+                            <input type="text" name="homoclave" id="homoclave" value="" class="form-control" >
                         </div>
                         <div class="form-group">
-                            <label for="claveRegistro">Identificador Trámite Institución</label>
-                            <input type="text" name="claveRegistro" value="" class="form-control" >
+                            <label for="tramiteInstitución">Identificador Trámite Institución</label>
+                            <input type="text" name="tramiteInstitucion" value="" id="tramiteInstitucion" class="form-control" >
                         </div>
                         <div class="form-group">
-                            <label for="rfc">Tipo Persona</label>
-                            <select class="form-control element select medium" id="element_7" name="select_ef">
+                            <label for="tipoPersona">Tipo Persona</label>
+                            <select class="form-control element select medium" id="tipoPersona" name="select_ef">
                                 <option value="" selected="selected"></option>
                                 <option >Física</option>
                                 <option >Moral</option>
                             </select>
                         </div>
-
                         <div class="form-group">
-                        <label for="homoclave">No. Identificación</label>
-                            <input type="text" name="homoclave" value="" class="form-control" >
+                        <label for="noIdentificacion">No. Identificación</label>
+                            <input type="text" name="noIdentificacion" id="noIdentificacion" value="" class="form-control" >
                         </div>
-
                     </div>
-
                     <div class="form-group clearfix">
                      <button type="button" class="btn btn-default pull-right send-macrotramite-btn"></i> Enviar</button>
                  </div>
@@ -167,7 +157,7 @@
 
      </section>
 
-                    <div id="errorLog" class="pull-left col-sm-12" style="margin-top: 30px; margin-bottom: 20px;"></div>
+	<div id="errorLog" class="pull-left col-sm-12" style="margin-top: 30px; margin-bottom: 20px;"></div>
  </div>
 </div>
 
@@ -224,7 +214,7 @@
                     <div class="form-group col-md-8 emailInput ">
                         <p></p>
                         <label for="email" class="control-label">Correo Electrónico</label>
-                        <input type="email" id="email" name="password" value="" class="form-control" placeholder="Correo Electrónico">
+                        <input type="email" id="email"  value="" class="form-control" placeholder="Correo Electrónico">
                     </div>
                         <p></p>
                     </div>
