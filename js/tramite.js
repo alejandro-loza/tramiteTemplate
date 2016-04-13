@@ -148,7 +148,27 @@ tramite = {
 			}
 		}
 		else if($('#tab-02').hasClass('active')){
-			$('#myModal2').modal('show');
+            var macroTramite = document.getElementById("macrotramite") ;
+            var idMacrotramite = document.getElementById("idMacrotramite") ;
+            var homoclave = document.getElementById("homoclaveMacro") ;
+            var tramiteInstitucion = document.getElementById("tramiteInstitucion") ;
+            var tipoPersona = document.getElementById("tipoPersona") ;
+            var noIdentificacion = document.getElementById("noIdentificacion") ; 
+
+            var formData = [macrotramite, idMacrotramite, homoclave, tramiteInstitucion, tipoPersona, noIdentificacion];
+            var busqueda =formData.find(findMissing );
+            if(formData.find(findMissing )){
+                alert("faltan campos")
+            }else{
+                document.getElementById("macrotramite").value= '' ;
+                document.getElementById("idMacrotramite").value= '' ;
+                document.getElementById("homoclaveMacro").value= '' ;
+                document.getElementById("tipoPersona").value= '' ;
+                document.getElementById("tramiteInstitucion").value = '' ;
+                document.getElementById("noIdentificacion").value= '' ; 
+                $('#myModal2').modal('show');               
+            }        
+
 		}
 		function findMissing(form) {
 	       return form.value === '';
