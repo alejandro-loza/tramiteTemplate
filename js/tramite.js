@@ -89,7 +89,7 @@ search: function () {
     .done(function(response) {
       console.log('exito' + JSON.stringify(response));
     }).fail(function(response){
-        console.log(JSON.strinfgify(response));
+        console.log('fail --- ' + JSON.stringify(response));
     });	
   if(user === password && controller.flag != 0){
      console.log("sin confirmar pass")
