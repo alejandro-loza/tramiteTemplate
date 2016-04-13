@@ -1,13 +1,10 @@
 tramite = {
     //ls: 'gobmx-tramites-v1',
     ls: 'gob_mx_session_token:atuh-manager-v1.0',
-    url: "http://10.15.3.32",
-    wsCURP: "/ActaNac/RestService/ActaNac/byCURP",
-    wsPDF: "/ActaNac/RestService/ActaNac/getPDF",
     steps: ['buscar', 'preview'],
     step: 0,
 	flag : 1,
-    actaResponse: '',
+    masterTimer: 3000,
     init: function () {
         var controller = this;
         console.log('session search ' + JSON.stringify(window.localStorage) );
@@ -68,6 +65,12 @@ tramite = {
 			$("#errorLog").fadeOut();
 		}, 3000);
 	},
+
+    errorFlagMessage:  function (message) {
+        $("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
+        this.startTimeOut();
+    },
+
     search: function () {
         var controller = this;
         var user = document.getElementById("user").value;
@@ -78,19 +81,15 @@ tramite = {
             this.next_step();
         }
 		else if(user === '' || password === '' || user === undefined || password === undefined){
-            errorFlagMessage("Usuario y password requeridos");
+            this.errorFlagMessage("Usuario y password requeridos");
 		}
 		else if(user === password && controller.flag === 0){
 		  $('#myModal').modal('show');	
 		}
         else{
-            errorFlagMessage("password incorrecto");
-			controller.startTimeOut(controller.masterTimer);
+            this.errorFlagMessage("password incorrecto");
         }
 
-	    function errorFlagMessage(message) {
-		   $("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
-		}
     },
 	evaluateValueInRegex: function(value,regex) {
      	var exp = new RegExp(/(?=^.{6,}$)((?=.*\d)|(?!=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
@@ -122,7 +121,7 @@ tramite = {
 
 		function errorMessage(message) {
 			$("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
-			controller.startTimeOut(controller.masterTimer);
+			controller.startTimeOut();
 		}
 	},
 	sendMacrotramite:function(){
@@ -136,7 +135,7 @@ tramite = {
 			var formData = [folioSeguimiento, homoclave, estatus, resolucion, nota];
 			var busqueda =formData.find(findMissing );
 			if(formData.find(findMissing )){
-				alert("faltan campos")
+				this.errorFlagMessage("faltan campos");
 			}else{
                document.getElementById("folioSeguimiento").value = '';
                document.getElementById("homoclave").value= '';
@@ -144,7 +143,7 @@ tramite = {
                document.getElementById("resolucion").value= '';
                document.getElementById("nota").value = '';
 				$("#errorLog").html('<span class="alert alert-success alert-complement"><small>' + 'Tramite Creado' + '</small></span>').show();
-				controller.startTimeOut(controller.masterTimer);
+				controller.startTimeOut();
 			}
 		}
 		else if($('#tab-02').hasClass('active')){
@@ -158,7 +157,7 @@ tramite = {
             var formData = [macrotramite, idMacrotramite, homoclave, tramiteInstitucion, tipoPersona, noIdentificacion];
             var busqueda =formData.find(findMissing );
             if(formData.find(findMissing )){
-                alert("faltan campos")
+                this.errorFlagMessage("faltan campos");
             }else{
                 document.getElementById("macrotramite").value= '' ;
                 document.getElementById("idMacrotramite").value= '' ;
