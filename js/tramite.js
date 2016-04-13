@@ -50,7 +50,7 @@ tramite = {
         this.step++;
         var current_step = this.step;
         $('section').addClass('hidden');
-        $('.' + controller.steps[current_step]).removeClass('hidden');        
+        $('.' + controller.steps[current_step]).removeClass('hidden');
         if (controller.steps[current_step] == 'confirmation') {
             setTimeout(function () {
                 $('.confirmation .loader').hide('fast', function () {
@@ -88,9 +88,9 @@ tramite = {
 			controller.startTimeOut(controller.masterTimer);
         }
 
-			function errorFlagMessage(message) {
-				$("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
-			}
+	    function errorFlagMessage(message) {
+		   $("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
+		}
     },
 	evaluateValueInRegex: function(value,regex) {
      	var exp = new RegExp(/(?=^.{6,}$)((?=.*\d)|(?!=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
@@ -119,10 +119,11 @@ tramite = {
 			this.flag = 1;
 			$('#myModal').modal('hide');
 		}
-			function errorMessage(message) {
-				$("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
-				controller.startTimeOut(controller.masterTimer);
-			}
+
+		function errorMessage(message) {
+			$("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
+			controller.startTimeOut(controller.masterTimer);
+		}
 	},
 	sendMacrotramite:function(){
         var controller = this;

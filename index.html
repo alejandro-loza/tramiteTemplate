@@ -156,6 +156,38 @@
 						</div>
                     </div>
 					<div class="tab-pane clearfix" id="tab-03">
+                        <div class="form-group col-md-9" >
+                        <div class="form-group col-md-3" >
+							<label for="search">Buscar Por</label>
+                            <select class="form-control element select medium" id="search" name="select_ef">
+                                <option value="" selected="selected"></option>
+								<option>Homoclave</option>
+								<option>Folio de Seguimiento</option>
+								<option>CURP/RFC</option>
+								<option>Fecha</option>
+								<option>Registrado Por</option>
+								<option>Estatus</option>
+								<option>Resolución</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3" >
+							<label for="valor">Valor</label>
+                            <input type="text" name="valor" id="valor" value="" class="form-control" >
+                        </div>
+                        <div class="form-group col-md-3" >
+							<label for="homoclaveSearch">Homoclave</label>
+                            <input type="text" name="valor" id="homoclaveSearch" value="" class="form-control" >
+                        </div>
+                        <div class="col-md-3" >
+                            <div class="col-md-3" >
+     							<label for="todos">Todos</label>
+                            </div>
+                            <div class="checkbox col-md-3" style="margin-top: 35px" >
+                                <input type="checkbox" name="valor" id="todos">
+                            </div>    
+                        </div>
+                        </div>
+                        <div class="form-group col-md-12" >
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -203,6 +235,7 @@
 								</tr>
 							</tbody>
 						</table>
+                    </div>
                     </div>
              </div>
          </div>
