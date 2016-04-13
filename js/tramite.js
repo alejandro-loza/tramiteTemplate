@@ -3,7 +3,7 @@ tramite = {
     ls: 'gob_mx_session_token:atuh-manager-v1.0',
     steps: ['buscar', 'preview'],
     step: 0,
-	flag : 1,
+    flag : 1,
     masterTimer: 3000,
     init: function () {
         var controller = this;
@@ -60,118 +60,134 @@ tramite = {
         $('section').addClass('hidden');
         $(this.steps[this.step - 1]).removeClass('hidden');
     },
-	startTimeOut: function() {
-		setTimeout(function() {
-			$("#errorLog").fadeOut();
-		}, 3000);
-	},
+    startTimeOut: function() {
+      setTimeout(function() {
+         $("#errorLog").fadeOut();
+     }, 3000);
+  },
 
-    errorFlagMessage:  function (message) {
-        $("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
-        this.startTimeOut();
-    },
+  errorFlagMessage:  function (message) {
+    $("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
+    this.startTimeOut();
+},
 
-    search: function () {
-        var controller = this;
-        var user = document.getElementById("user").value;
-        var password = document.getElementById("password").value;
-        if(user === password && controller.flag != 0){
-			console.log("sin confirmar pass")
+search: function () {
+    var controller = this;
+    var user = document.getElementById("user").value;
+    var password = document.getElementById("password").value;
+    $.ajax({
+        url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/seguridad/autenticacionBasica',
+        type: 'POST',
+        dataType: "json", 
+        contentType: 'application/json',
+        data: {
+          "usuario":user,
+          "contrasenia":password,
+          "ip":"127.0.0.1"
+        }
+    })
+    .done(function(response) {
+      console.log('exito' + JSON.stringify(response));
+    }).fail(function(response){
+        console.log(JSON.strinfgify(response));
+    });	
+  if(user === password && controller.flag != 0){
+     console.log("sin confirmar pass")
             //TODO ws de logeo
             this.next_step();
         }
-		else if(user === '' || password === '' || user === undefined || password === undefined){
+        else if(user === '' || password === '' || user === undefined || password === undefined){
             this.errorFlagMessage("Usuario y password requeridos");
-		}
-		else if(user === password && controller.flag === 0){
-		  $('#myModal').modal('show');	
-		}
+        }
+        else if(user === password && controller.flag === 0){
+            $('#myModal').modal('show');	
+        }
         else{
             this.errorFlagMessage("password incorrecto");
         }
 
     },
-	evaluateValueInRegex: function(value,regex) {
-     	var exp = new RegExp(/(?=^.{6,}$)((?=.*\d)|(?!=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
-		return  exp.test(value);
-	},
-	changePassword: function(){
-        var controller = this;
-        var password = document.getElementById("password").value;
-        var passwordToChange = document.getElementById("passwordChange").value;
-        var newPassword = document.getElementById("newPassword").value;
-        var confirmPassword = document.getElementById("confirmPassword").value;
-		if(password !== passwordToChange){
-            errorMessage("Password incorrecto");
-		}
-		else if (newPassword !== confirmPassword){
-            errorMessage("Las nuevas contraseñas no son iguales");
-		}
-		else if (newPassword.length < 6 || newPassword.length > 11 ){
-            errorMessage("Longitud inválida la contraseña debe tener entre 6 a 10 caracteres");
-		}
-		else if (!this.evaluateValueInRegex(newPassword )){
-            errorMessage("Formato invalido");
-		}
-		else{
-            document.getElementById("password").value = '';
-			this.flag = 1;
-			$('#myModal').modal('hide');
-		}
+    evaluateValueInRegex: function(value,regex) {
+      var exp = new RegExp(/(?=^.{6,}$)((?=.*\d)|(?!=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
+      return  exp.test(value);
+  },
+  changePassword: function(){
+    var controller = this;
+    var password = document.getElementById("password").value;
+    var passwordToChange = document.getElementById("passwordChange").value;
+    var newPassword = document.getElementById("newPassword").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+    if(password !== passwordToChange){
+        errorMessage("Password incorrecto");
+    }
+    else if (newPassword !== confirmPassword){
+        errorMessage("Las nuevas contraseñas no son iguales");
+    }
+    else if (newPassword.length < 6 || newPassword.length > 11 ){
+        errorMessage("Longitud inválida la contraseña debe tener entre 6 a 10 caracteres");
+    }
+    else if (!this.evaluateValueInRegex(newPassword )){
+        errorMessage("Formato invalido");
+    }
+    else{
+        document.getElementById("password").value = '';
+        this.flag = 1;
+        $('#myModal').modal('hide');
+    }
 
-		function errorMessage(message) {
-			$("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
-			controller.startTimeOut();
-		}
-	},
-	sendMacrotramite:function(){
-        var controller = this;
-		if( $('#tab-01').hasClass('active')) {
-            var folioSeguimiento = document.getElementById("folioSeguimiento") ;
-            var homoclave = document.getElementById("homoclave");
-            var estatus = document.getElementById("estatus")  ;
-            var resolucion = document.getElementById("resolucion");
-            var nota = document.getElementById("nota") ;
-			var formData = [folioSeguimiento, homoclave, estatus, resolucion, nota];
-			var busqueda =formData.find(findMissing );
-			if(formData.find(findMissing )){
-				this.errorFlagMessage("faltan campos");
-			}else{
-               document.getElementById("folioSeguimiento").value = '';
-               document.getElementById("homoclave").value= '';
-               document.getElementById("estatus").value  = '';
-               document.getElementById("resolucion").value= '';
-               document.getElementById("nota").value = '';
-				$("#errorLog").html('<span class="alert alert-success alert-complement"><small>' + 'Tramite Creado' + '</small></span>').show();
-				controller.startTimeOut();
-			}
-		}
-		else if($('#tab-02').hasClass('active')){
-            var macroTramite = document.getElementById("macrotramite") ;
-            var idMacrotramite = document.getElementById("idMacrotramite") ;
-            var homoclave = document.getElementById("homoclaveMacro") ;
-            var tramiteInstitucion = document.getElementById("tramiteInstitucion") ;
-            var tipoPersona = document.getElementById("tipoPersona") ;
-            var noIdentificacion = document.getElementById("noIdentificacion") ; 
+    function errorMessage(message) {
+     $("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
+     controller.startTimeOut();
+ }
+},
+sendMacrotramite:function(){
+    var controller = this;
+    if( $('#tab-01').hasClass('active')) {
+        var folioSeguimiento = document.getElementById("folioSeguimiento") ;
+        var homoclave = document.getElementById("homoclave");
+        var estatus = document.getElementById("estatus")  ;
+        var resolucion = document.getElementById("resolucion");
+        var nota = document.getElementById("nota") ;
+        var formData = [folioSeguimiento, homoclave, estatus, resolucion, nota];
+        var busqueda =formData.find(findMissing );
+        if(formData.find(findMissing )){
+            this.errorFlagMessage("faltan campos");
+        }else{
+         document.getElementById("folioSeguimiento").value = '';
+         document.getElementById("homoclave").value= '';
+         document.getElementById("estatus").value  = '';
+         document.getElementById("resolucion").value= '';
+         document.getElementById("nota").value = '';
+         $("#errorLog").html('<span class="alert alert-success alert-complement"><small>' + 'Tramite Creado' + '</small></span>').show();
+         controller.startTimeOut();
+     }
+ }
+ else if($('#tab-02').hasClass('active')){
+    var macroTramite = document.getElementById("macrotramite") ;
+    var idMacrotramite = document.getElementById("idMacrotramite") ;
+    var homoclave = document.getElementById("homoclaveMacro") ;
+    var tramiteInstitucion = document.getElementById("tramiteInstitucion") ;
+    var tipoPersona = document.getElementById("tipoPersona") ;
+    var noIdentificacion = document.getElementById("noIdentificacion") ; 
 
-            var formData = [macrotramite, idMacrotramite, homoclave, tramiteInstitucion, tipoPersona, noIdentificacion];
-            var busqueda =formData.find(findMissing );
-            if(formData.find(findMissing )){
-                this.errorFlagMessage("faltan campos");
-            }else{
-                document.getElementById("macrotramite").value= '' ;
-                document.getElementById("idMacrotramite").value= '' ;
-                document.getElementById("homoclaveMacro").value= '' ;
-                document.getElementById("tipoPersona").value= '' ;
-                document.getElementById("tramiteInstitucion").value = '' ;
-                document.getElementById("noIdentificacion").value= '' ; 
-                $('#myModal2').modal('show');               
-            }        
+    var formData = [macrotramite, idMacrotramite, homoclave, tramiteInstitucion, tipoPersona, noIdentificacion];
+    var busqueda =formData.find(findMissing );
+    if(formData.find(findMissing )){
+        this.errorFlagMessage("faltan campos");
+    }else{
+        document.getElementById("macrotramite").value= '' ;
+        document.getElementById("idMacrotramite").value= '' ;
+        document.getElementById("homoclaveMacro").value= '' ;
+        document.getElementById("tipoPersona").value= '' ;
+        document.getElementById("tramiteInstitucion").value = '' ;
+        document.getElementById("noIdentificacion").value= '' ; 
+        $('#myModal2').modal('show');               
+    }        
 
-		}
-		function findMissing(form) {
-	       return form.value === '';
-		}
-   	}
+}
+function findMissing(form) {
+    return form.value === '';
+}
+}
 
 }
