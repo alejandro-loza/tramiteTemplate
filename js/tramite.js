@@ -75,23 +75,21 @@ search: function () {
     var controller = this;
     var user = document.getElementById("user").value;
     var password = document.getElementById("password").value;
-    $.ajax({
-        url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/seguridad/autenticacionBasica',
-        type: 'POST',
-        dataType: "json", 
-        contentType: 'application/json',
-        data: {
-          "usuario":user,
-          "contrasenia":password,
-          "ip":"127.0.0.1"
-        }
-    })
-    .done(function(response) {
-      console.log('exito' + JSON.stringify(response));
-    }).fail(function(response){
-        console.log('fail --- ' + JSON.stringify(response));
-    });	
+	  $.ajax({
+			url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/seguridad/autenticacionBasica',
+			type: 'POST',
+			dataType: "json", 
+			contentType: 'application/json',
+			data: '{"usuario":"user","contrasenia":"password","ip":"127.0.0.1"}'
+	  })
+	  .done(function(response) {
+		             console.log('exito' + JSON.stringify(response));
+	  }).fail(function(response){
+		            console.log('fail --- ' + JSON.stringify(response));
+	  });
   if(user === password && controller.flag != 0){
+
+
      console.log("sin confirmar pass")
             //TODO ws de logeo
             this.next_step();
