@@ -69,75 +69,83 @@ tramite = {
   errorFlagMessage:  function (message) {
     $("#errorLog").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
     this.startTimeOut();
-},
-
-search: function () {
-    var controller = this;
-    var user = document.getElementById("user").value;
-    var password = document.getElementById("password").value;
-	  $.ajax({
-			url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/seguridad/autenticacionBasica',
-			type: 'POST',
-			dataType: "json", 
-			contentType: 'application/json',
-			data: '{"usuario":"user","contrasenia":"password","ip":"127.0.0.1"}'
-	  })
-	  .done(function(response) {
-		             console.log('exito' + JSON.stringify(response));
-	  }).fail(function(response){
-		            console.log('fail --- ' + JSON.stringify(response));
-	  });
-  if(user === password && controller.flag != 0){
-
-
-     console.log("sin confirmar pass")
-            //TODO ws de logeo
-            this.next_step();
-        }
-        else if(user === '' || password === '' || user === undefined || password === undefined){
-            this.errorFlagMessage("Usuario y password requeridos");
-        }
-        else if(user === password && controller.flag === 0){
-            $('#myModal').modal('show');	
-        }
-        else{
-            this.errorFlagMessage("password incorrecto");
-        }
-
-    },
+  },
+  search: function () {
+		var controller = this;
+		var user = document.getElementById("user").value;
+		var password = document.getElementById("password").value;
+		if(user === '' || password === '' || user === undefined || password === undefined){
+			this.errorFlagMessage("Usuario y password requeridos");
+		}
+		else {
+			var payload = {"usuario":user,"contrasenia":password,"ip":"127.0.0.1"};
+			  $.ajax({
+					url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/seguridad/autenticacionBasica',
+					type: 'POST',
+					dataType: "json",
+					contentType: 'application/json',
+					data: JSON.stringify(payload),
+			  })
+			  .done(function(response) {
+				  if(response.verificacion === 1){
+					controller.next_step();
+				  }
+				  else if(response.verificacion === 0){
+					$('#myModal').modal('show');
+				  }
+				  else if (response.codigoExcepcion === 2002){
+					controller.errorFlagMessage(response.descripcionExcepcion);
+				  }
+			  }).fail(function(response){
+							console.log('fail --- ' + JSON.stringify(response));
+			  });
+		}
+	},
     evaluateValueInRegex: function(value,regex) {
       var exp = new RegExp(/(?=^.{6,}$)((?=.*\d)|(?!=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
       return  exp.test(value);
-  },
-  changePassword: function(){
-    var controller = this;
-    var password = document.getElementById("password").value;
-    var passwordToChange = document.getElementById("passwordChange").value;
-    var newPassword = document.getElementById("newPassword").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-    if(password !== passwordToChange){
-        errorMessage("Password incorrecto");
-    }
-    else if (newPassword !== confirmPassword){
-        errorMessage("Las nuevas contraseñas no son iguales");
-    }
-    else if (newPassword.length < 6 || newPassword.length > 11 ){
-        errorMessage("Longitud inválida la contraseña debe tener entre 6 a 10 caracteres");
-    }
-    else if (!this.evaluateValueInRegex(newPassword )){
-        errorMessage("Formato invalido");
-    }
-    else{
-        document.getElementById("password").value = '';
-        this.flag = 1;
-        $('#myModal').modal('hide');
-    }
+    },
+	changePassword: function(){
+		var controller = this;
+		var user = document.getElementById("user").value;
+		var password = document.getElementById("password").value;
+		var passwordToChange = document.getElementById("passwordChange").value;
+		var newPassword = document.getElementById("newPassword").value;
+		var confirmPassword = document.getElementById("confirmPassword").value;
+		if(password !== passwordToChange){
+			errorMessage("Password incorrecto");
+		}
+		else if (newPassword !== confirmPassword){
+			errorMessage("Las nuevas contraseñas no son iguales");
+		}
+		else if (newPassword.length < 6 || newPassword.length > 11 ){
+			errorMessage("Longitud inválida la contraseña debe tener entre 6 a 10 caracteres");
+		}
+		else if (!this.evaluateValueInRegex(newPassword )){
+			errorMessage("Formato invalido");
+		}
+		else{
+			var payload = {"usuario":user,"contrasenia":password,"nuevaContrasenia":newPassword,"confirmacionContrasenia": confirmPassword, "ip":"127.0.0.1"};
+			  $.ajax({
+					url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/seguridad/cambiarContrasenia',
+					type: 'POST',
+					dataType: "json",
+					contentType: 'application/json',
+					data: JSON.stringify(payload),
+			  })
+			  .done(function(response) {
+					document.getElementById("password").value = '';
+					$('#myModal').modal('hide');
+			  }).fail(function(response){
+							console.log('fail --- ' + JSON.stringify(response));
+			  });
+		}
 
-    function errorMessage(message) {
-     $("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
-     controller.startTimeOut();
- }
-},
+		function errorMessage(message) {
+		   $("#errorModalFlashMessage").html('<span class="alert alert-danger alert-complement"><small>' + message + '</small></span>').show();
+		   controller.startTimeOut();
+		}
+	},
 sendMacrotramite:function(){
     var controller = this;
     if( $('#tab-01').hasClass('active')) {
