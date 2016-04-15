@@ -4,6 +4,7 @@ tramite = {
     steps: ['buscar', 'preview'],
     step: 0,
     user : '',
+	folioSeguimiento: '',
     masterTimer: 3000,
     init: function () {
         var controller = this;
@@ -227,19 +228,18 @@ sendMacrotramite:function(){
 					data: JSON.stringify(payload),
 			  })
 			  .done(function(response) {
-				    alert("response * " + JSON.stringify(response));
-					document.getElementById("password").value = '';
-					$('#myModal').modal('hide');
+                    controller.folioSeguimiento = response.folioSeguimiento;
+					document.getElementById("macrotramite").value= '' ;
+					document.getElementById("idMacrotramite").value= '' ;
+					document.getElementById("homoclaveMacro").value= '' ;
+					document.getElementById("tipoPersona").value= '' ;
+					document.getElementById("tramiteInstitucion").value = '' ;
+					document.getElementById("noIdentificacion").value= '' ;
+					document.getElementById("folioModal").innerHTML = controller.folioSeguimiento;
+					$('#myModal2').modal('show');
 			  }).fail(function(response){
 							console.log('fail --- ' + JSON.stringify(response));
 			  });
-			document.getElementById("macrotramite").value= '' ;
-			document.getElementById("idMacrotramite").value= '' ;
-			document.getElementById("homoclaveMacro").value= '' ;
-			document.getElementById("tipoPersona").value= '' ;
-			document.getElementById("tramiteInstitucion").value = '' ;
-			document.getElementById("noIdentificacion").value= '' ;
-			$('#myModal2').modal('show');
 		}
 
 	}
