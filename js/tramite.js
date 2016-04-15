@@ -152,23 +152,45 @@ tramite = {
 sendMacrotramite:function(){
     var controller = this;
     if( $('#tab-01').hasClass('active')) {
-        var folioSeguimiento = document.getElementById("folioSeguimiento") ;
-        var homoclave = document.getElementById("homoclave");
+        var folioSeguimiento = document.getElementById("folioSeguimiento").value ;
+        var homoclave = document.getElementById("homoclave").value;
         var estatus = document.getElementById("estatus")  ;
         var resolucion = document.getElementById("resolucion");
-        var nota = document.getElementById("nota") ;
+        var nota = document.getElementById("nota").value ;
         var formData = [folioSeguimiento, homoclave, estatus, resolucion, nota];
         var busqueda =formData.find(findMissing );
         if(formData.find(findMissing )){
             this.errorFlagMessage("faltan campos");
         }else{
-			 document.getElementById("folioSeguimiento").value = '';
-			 document.getElementById("homoclave").value= '';
-			 document.getElementById("estatus").value  = '';
-			 document.getElementById("resolucion").value= '';
-			 document.getElementById("nota").value = '';
-			 $("#errorLog").html('<span class="alert alert-success alert-complement"><small>' + 'Tramite Creado' + '</small></span>').show();
-			 controller.startTimeOut();
+			var payload = {
+				"metodo": 1,
+				"folioSeguimiento": folioSeguimiento,
+				"homoclave": homoclave,
+				"estatus": Number(estatus.options[estatus.selectedIndex].value),
+				"resolucion": Number(resolucion.options[resolucion.selectedIndex].value),
+				"idOperador": controller.user,
+				"ip":"127.0.0.1" ,
+				"nota": nota
+
+			};
+			  $.ajax({
+					url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/IOP/notificarEstatusTramite',
+					type: 'POST',
+					dataType: "json",
+					contentType: 'application/json',
+					data: JSON.stringify(payload),
+			  })
+			  .done(function(response) {
+					 document.getElementById("folioSeguimiento").value = '';
+					 document.getElementById("homoclave").value= '';
+					 document.getElementById("estatus").value  = '';
+					 document.getElementById("resolucion").value= '';
+					 document.getElementById("nota").value = '';
+					 $("#errorLog").html('<span class="alert alert-success alert-complement"><small>' + 'Tramite Creado' + '</small></span>').show();
+					 controller.startTimeOut();
+			  }).fail(function(response){
+							console.log('fail --- ' + JSON.stringify(response));
+			  });
 		 }
 	 }
 	 else if($('#tab-02').hasClass('active')){
@@ -197,8 +219,6 @@ sendMacrotramite:function(){
 				"ip": "192.1.4.90"
 			};
 
-                    alert("payload: " + JSON.stringify(payload));
-
 			  $.ajax({
 					url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/IOP/registrarRefMacrotramite',
 					type: 'POST',
@@ -213,12 +233,12 @@ sendMacrotramite:function(){
 			  }).fail(function(response){
 							console.log('fail --- ' + JSON.stringify(response));
 			  });
-			//document.getElementById("macrotramite").value= '' ;
-			//document.getElementById("idMacrotramite").value= '' ;
-			//document.getElementById("homoclaveMacro").value= '' ;
-			//document.getElementById("tipoPersona").value= '' ;
-			//document.getElementById("tramiteInstitucion").value = '' ;
-			//document.getElementById("noIdentificacion").value= '' ;
+			document.getElementById("macrotramite").value= '' ;
+			document.getElementById("idMacrotramite").value= '' ;
+			document.getElementById("homoclaveMacro").value= '' ;
+			document.getElementById("tipoPersona").value= '' ;
+			document.getElementById("tramiteInstitucion").value = '' ;
+			document.getElementById("noIdentificacion").value= '' ;
 			$('#myModal2').modal('show');
 		}
 
