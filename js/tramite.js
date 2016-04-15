@@ -78,8 +78,8 @@ tramite = {
 			this.errorFlagMessage("Usuario y password requeridos");
 		}
 		else {
-			this.user = user;
-			var payload = {"usuario":this.user,"contrasenia":password,"ip":"127.0.0.1"};
+		
+			var payload = {"usuario":user,"contrasenia":password,"ip":"127.0.0.1"};
 			  $.ajax({
 					url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/seguridad/autenticacionBasica',
 					type: 'POST',
@@ -89,6 +89,7 @@ tramite = {
 			  })
 			  .done(function(response) {
 				  if(response.verificacion === 1){
+                    controller.user = response.folioUsuario;
 					controller.next_step();
 				  }
 				  else if(response.verificacion === 0){
@@ -100,6 +101,7 @@ tramite = {
 			  }).fail(function(response){
 							console.log('fail --- ' + JSON.stringify(response));
 			  });
+
 		}
 	},
     evaluateValueInRegex: function(value,regex) {
@@ -171,30 +173,34 @@ sendMacrotramite:function(){
 	 }
 	 else if($('#tab-02').hasClass('active')){
 		var macroTramite = document.getElementById("macrotramite") ;
-		var idMacrotramite = document.getElementById("idMacrotramite") ;
-		var homoclave = document.getElementById("homoclaveMacro") ;
-		var tramiteInstitucion = document.getElementById("tramiteInstitucion") ;
+		var idMacrotramite = document.getElementById("idMacrotramite").value ;
+		var homoclave = document.getElementById("homoclaveMacro").value ;
+		var tramiteInstitucion = document.getElementById("tramiteInstitucion").value ;
 		var tipoPersona = document.getElementById("tipoPersona") ;
-		var noIdentificacion = document.getElementById("noIdentificacion") ;
+		var noIdentificacion = document.getElementById("noIdentificacion").value ;
 		var formData = [macrotramite, idMacrotramite, homoclave, tramiteInstitucion, tipoPersona, noIdentificacion];
 		var busqueda =formData.find(findMissing );
 		if(formData.find(findMissing )){
 			this.errorFlagMessage("faltan campos");
 		}
 		else{
+
 			var payload = {
 				"metodo":1,
-				"idInteroperabilidad": macroTramite,
+				"idInteroperabilidad": Number(macroTramite.options[macroTramite.selectedIndex].value),
 				"idMacrotramiteInstitucion": idMacrotramite,
 				"homoclave": homoclave ,
 				"idTramiteInstitucion": tramiteInstitucion,
-				"idOperador":this.user,
-				"tipoPersona":tipoPersona,
+				"idOperador": controller.user,
+				"tipoPersona": Number(tipoPersona.options[tipoPersona.selectedIndex].value),
 				"idPersona": noIdentificacion,
-				"ip":"192.1.4.90"
+				"ip": "192.1.4.90"
 			};
+
+                    alert("payload: " + JSON.stringify(payload));
+
 			  $.ajax({
-					url: 'http://10.15.3.32/IOP/registrarRefMacrotramite',
+					url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/IOP/registrarRefMacrotramite',
 					type: 'POST',
 					dataType: "json",
 					contentType: 'application/json',
@@ -207,12 +213,12 @@ sendMacrotramite:function(){
 			  }).fail(function(response){
 							console.log('fail --- ' + JSON.stringify(response));
 			  });
-			document.getElementById("macrotramite").value= '' ;
-			document.getElementById("idMacrotramite").value= '' ;
-			document.getElementById("homoclaveMacro").value= '' ;
-			document.getElementById("tipoPersona").value= '' ;
-			document.getElementById("tramiteInstitucion").value = '' ;
-			document.getElementById("noIdentificacion").value= '' ;
+			//document.getElementById("macrotramite").value= '' ;
+			//document.getElementById("idMacrotramite").value= '' ;
+			//document.getElementById("homoclaveMacro").value= '' ;
+			//document.getElementById("tipoPersona").value= '' ;
+			//document.getElementById("tramiteInstitucion").value = '' ;
+			//document.getElementById("noIdentificacion").value= '' ;
 			$('#myModal2').modal('show');
 		}
 
