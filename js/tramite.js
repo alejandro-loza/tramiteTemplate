@@ -78,31 +78,8 @@ tramite = {
 		if(user === '' || password === '' || user === undefined || password === undefined){
 			this.errorFlagMessage("Usuario y password requeridos");
 		}
-		else {
-		
-			var payload = {"usuario":user,"contrasenia":password,"ip":"127.0.0.1"};
-			  $.ajax({
-					url: 'http://10.15.3.32/soa-infra/resources/default/VUNTrazabilidad!1.0/VUN/seguridad/autenticacionBasica',
-					type: 'POST',
-					dataType: "json",
-					contentType: 'application/json',
-					data: JSON.stringify(payload),
-			  })
-			  .done(function(response) {
-				  if(response.verificacion === 1){
-                    controller.user = response.folioUsuario;
-					controller.next_step();
-				  }
-				  else if(response.verificacion === 0){
-					$('#myModal').modal('show');
-				  }
-				  else if (response.codigoExcepcion === 2002){
-					controller.errorFlagMessage(response.descripcionExcepcion);
-				  }
-			  }).fail(function(response){
-							console.log('fail --- ' + JSON.stringify(response));
-			  });
-
+		else {		
+			controller.next_step();
 		}
 	},
     evaluateValueInRegex: function(value,regex) {
